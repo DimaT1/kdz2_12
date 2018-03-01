@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ListLibrary
 {
     public class ListItem
     {
-        private DataListItem<string> _id;
-        private DataListItem<double> _lat;
-        private DataListItem<double> _long;
-        private DataListItem<double> _depth;
-        private DataListItem<double> _mag;
-        private DataListItem<int> _stations;
+        private DataListItem<string> _id = new DataListItem<string>();
+        private DataListItem<double> _lat = new DataListItem<double>();
+        private DataListItem<double> _long = new DataListItem<double>();
+        private DataListItem<double> _depth = new DataListItem<double>();
+        private DataListItem<double> _mag = new DataListItem<double>();
+        private DataListItem<int> _stations = new DataListItem<int>();
 
         public ListItem(List<string> dataList)
         {
@@ -36,6 +32,19 @@ namespace ListLibrary
             res.Add(_depth.ToString());
             res.Add(_stations.ToString());
 
+            return res;
+        }
+
+        // TODO
+        public override string ToString()
+        {
+            string res = "";
+
+            List<string> list = this.ToStringList();
+            foreach (string str in list)
+            {
+                res += str + ",";
+            }
             return res;
         }
     }

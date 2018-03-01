@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace ListLibrary
@@ -28,6 +25,11 @@ namespace ListLibrary
                 }
             }
             return res;
+        }
+
+        static void WriteToCSV(List<ListItem> table, string filename)
+        {
+            // TODO
         }
     }
 }

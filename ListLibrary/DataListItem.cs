@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ListLibrary
 {
@@ -26,7 +22,7 @@ namespace ListLibrary
         public void Set(string str)
         {
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
-            try
+            try // TODO
             {
                 obj = (T)converter.ConvertFromString(str);
                 objValid = true;
