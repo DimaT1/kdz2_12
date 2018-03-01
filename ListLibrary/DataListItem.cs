@@ -15,7 +15,7 @@ namespace ListLibrary
                 if (objValid)
                     return obj;
                 else
-                    throw new ArgumentException("id is invalid");
+                    throw new ArgumentException($"{typeof(T)} object {this} is invalid");
             }
         }
 
