@@ -19,5 +19,10 @@ namespace KDZ_2_12_
         {
             InitializeComponent();
         }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

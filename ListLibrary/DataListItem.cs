@@ -11,6 +11,7 @@ namespace ListLibrary
     {
         private T obj;
         private bool objValid;
+
         public T Obj
         {
             get
@@ -21,6 +22,7 @@ namespace ListLibrary
                     throw new ArgumentException("id is invalid");
             }
         }
+
         public void Set(string str)
         {
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
@@ -32,9 +34,29 @@ namespace ListLibrary
             catch
             {
                 objValid = false;
-                throw new ArgumentException($"{typeof(T)} object is invalid");
+                throw new ArgumentException($"{typeof(T)} object {this} is invalid");
             }
         }
 
+        public override string ToString()
+        {
+            string res = obj.ToString();
+            if (objValid)
+            {
+                object[] types = { typeof(float), typeof(decimal), typeof(double) };
+                foreach (var t in types)
+                {
+                    if (obj.GetType() == t)
+                    {
+                        res = res.Replace(",", ".");
+                    }
+                }
+            }
+            else
+            {
+                return "NA";
+            }
+            return res;
+        }
     }
 }

@@ -29,7 +29,5 @@ namespace ListLibrary
             }
             return res;
         }
-
-
     }
 }
