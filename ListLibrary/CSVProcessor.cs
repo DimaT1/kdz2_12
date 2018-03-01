@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ListLibrary
 {
-    public class ListItem
+    static class CSVProcessor
     {
-
     }
 }

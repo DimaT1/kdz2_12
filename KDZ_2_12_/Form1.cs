@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace KDZ_2_12_
 {
+    /// <summary>
+    /// View
+    /// </summary>
     public partial class Form1 : Form
     {
         public Form1()

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListLibrary
+namespace KDZ_2_12_
 {
-    public class ListItem
+    static class Jarvis
     {
-
     }
 }
