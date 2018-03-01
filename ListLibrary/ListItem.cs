@@ -8,6 +8,14 @@ namespace ListLibrary
 {
     public class ListItem
     {
+        public ListItem(List<string> list)
+        {
 
+        }
+
+        public List<string> ToStringList()
+        {
+            return null;
+        }
     }
 }
