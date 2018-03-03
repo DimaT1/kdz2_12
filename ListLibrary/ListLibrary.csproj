@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coordinates.cs" />
     <Compile Include="CSVProcessor.cs" />
-    <Compile Include="DataListItem.cs" />
-    <Compile Include="ListItem.cs" />
+    <Compile Include="QuakeItem.cs" />
+    <Compile Include="EarthQuake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

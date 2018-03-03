@@ -22,7 +22,15 @@ namespace KDZ_2_12_
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Jarvis.FileReader(openFileDialog.FileName);
+                }
+            }
         }
     }
 }
