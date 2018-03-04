@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Globalization;
 
 
 namespace ListLibrary
@@ -45,7 +46,8 @@ namespace ListLibrary
                     {
                         throw new ArgumentException($"file {filename} is invalid");
                     }
-                    res.Add(new EarthQuake(values));
+                    values[0] = values[0].Replace("\"", "");
+                    res.Add(new EarthQuake(values, CultureInfo.GetCultureInfo("en-US")));
                 }
             }
             return res;
@@ -63,7 +65,7 @@ namespace ListLibrary
                 writer.WriteLine(normalHeader);
                 foreach (EarthQuake item in table)
                 {
-                    writer.WriteLine();
+                    writer.WriteLine(item.ToString(CultureInfo.GetCultureInfo("en-US")));
                 }
             }
         }

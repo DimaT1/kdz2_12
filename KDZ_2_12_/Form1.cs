@@ -15,6 +15,8 @@ namespace KDZ_2_12_
     /// </summary>
     public partial class Form1 : Form
     {
+        public event EventHandler<string> ViewOpenFile;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,8 +30,9 @@ namespace KDZ_2_12_
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Jarvis.FileReader(openFileDialog.FileName);
+                    
                 }
+
             }
         }
     }

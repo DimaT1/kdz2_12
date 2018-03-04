@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KDZ_2_12_
+namespace ListLibrary
 {
-    static class Model
+    interface IValid
     {
+        bool Valid { get; }
     }
 }

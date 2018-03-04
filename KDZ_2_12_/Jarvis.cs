@@ -9,9 +9,18 @@ namespace KDZ_2_12_
 {
     static class Jarvis
     {
-        public static void FileReader(string filename)
+        private static QuakeInfo quakeInfo;
+
+        public static void OnFileOpened(string filename)
         {
-            CSVProcessor.ReadFromCSV(filename);
+            
         }
+
+        /*
+        public static List<List<string>> FileReader(string filename)
+        {
+
+        }
+        */
     }
 }
