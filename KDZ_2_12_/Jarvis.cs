@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ModelLibrary;
 using EventsLibrary;
+using System.Globalization;
 
 namespace KDZ_2_12_
 {
@@ -23,7 +24,7 @@ namespace KDZ_2_12_
             try
             {
                 quakeInfo = new QuakeInfo(fileName);
-                Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList());
+                Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList(CultureInfo.GetCultureInfo("ru-RU")));
                 currentFileName = fileName;
 
             }

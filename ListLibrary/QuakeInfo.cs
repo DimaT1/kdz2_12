@@ -111,7 +111,7 @@ namespace ModelLibrary
             List<List<string>> res = new List<List<string>>(); 
             foreach (EarthQuake quake in quakes)
             {
-                res.Add(quake.GetList());
+                res.Add(quake.GetList(cultureInfo));
             }
             return res;
         }
