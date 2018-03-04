@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace ListLibrary
+namespace ModelLibrary
 {
     /// <summary>
     /// Класс, описывающий обобщённую характеристику землетрясения
@@ -25,7 +25,7 @@ namespace ListLibrary
                 if (objValid)
                     return obj;
                 else
-                    throw new ArgumentException($"{typeof(T)} object {this} is invalid");
+                    throw new ArgumentException($"{typeof(T)} object {this} is invalid", "obj");
             }
         }
 
@@ -78,7 +78,7 @@ namespace ListLibrary
             catch
             {
                 objValid = false;
-                throw new ArgumentException($"{typeof(T)} object {this} is invalid");
+                throw new ArgumentException($"{typeof(T)} object {this} is invalid", "obj");
             }
         }
 

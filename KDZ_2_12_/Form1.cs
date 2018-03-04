@@ -35,5 +35,19 @@ namespace KDZ_2_12_
 
             }
         }
+
+        private void saveFileAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+
+            }
+        }
     }
 }

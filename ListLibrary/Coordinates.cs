@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 
-namespace ListLibrary
+namespace ModelLibrary
 {
     /// <summary>
     /// Структура описывает географические координаты землетрясения

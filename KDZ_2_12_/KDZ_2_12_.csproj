@@ -80,9 +80,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ListLibrary\ListLibrary.csproj">
+    <ProjectReference Include="..\EventsLibrary\EventsLibrary.csproj">
+      <Project>{542bf8af-ef6d-418f-9e9f-d9af24715fd4}</Project>
+      <Name>EventsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ListLibrary\ModelLibrary.csproj">
       <Project>{aae46364-68e1-42f5-bfda-7ebff498d33c}</Project>
-      <Name>ListLibrary</Name>
+      <Name>ModelLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

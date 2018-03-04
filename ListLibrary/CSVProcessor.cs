@@ -5,7 +5,7 @@ using System.IO;
 using System.Globalization;
 
 
-namespace ListLibrary
+namespace ModelLibrary
 {
     public static class CSVProcessor
     {
@@ -34,7 +34,7 @@ namespace ListLibrary
                     string headerLine = reader.ReadLine();
                     if (headerLine != normalHeader)
                     {
-                        throw new ArgumentException($"file {filename} is invalid");
+                        throw new ArgumentException($"file {filename} is invalid", "file");
                     }
                 }
 
@@ -44,7 +44,7 @@ namespace ListLibrary
                     List<string> values = line.Split(',').ToList();
                     if (values.Capacity != normalWidthSize)
                     {
-                        throw new ArgumentException($"file {filename} is invalid");
+                        throw new ArgumentException($"file {filename} is invalid", "file");
                     }
                     values[0] = values[0].Replace("\"", "");
                     res.Add(new EarthQuake(values, CultureInfo.GetCultureInfo("en-US")));

@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDZ_2_12_", "KDZ_2_12_\KDZ_2_12_.csproj", "{5D04C2D6-EBFA-43A9-BB92-56A57C3B99AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListLibrary", "ListLibrary\ListLibrary.csproj", "{AAE46364-68E1-42F5-BFDA-7EBFF498D33C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLibrary", "ListLibrary\ModelLibrary.csproj", "{AAE46364-68E1-42F5-BFDA-7EBFF498D33C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsLibrary", "EventsLibrary\EventsLibrary.csproj", "{542BF8AF-EF6D-418F-9E9F-D9AF24715FD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AAE46364-68E1-42F5-BFDA-7EBFF498D33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAE46364-68E1-42F5-BFDA-7EBFF498D33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAE46364-68E1-42F5-BFDA-7EBFF498D33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542BF8AF-EF6D-418F-9E9F-D9AF24715FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542BF8AF-EF6D-418F-9E9F-D9AF24715FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542BF8AF-EF6D-418F-9E9F-D9AF24715FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542BF8AF-EF6D-418F-9E9F-D9AF24715FD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

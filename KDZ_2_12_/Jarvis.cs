@@ -3,24 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ListLibrary;
+using ModelLibrary;
+using EventsLibrary;
 
 namespace KDZ_2_12_
 {
-    static class Jarvis
+    public static class Jarvis
     {
         private static QuakeInfo quakeInfo;
+        private static string currentFileName = null;
 
-        public static void OnFileOpened(string filename)
+        public static ViewJarvisMessageEvent<string> viewOpenFileEvent, viewSaveFileEvent;
+
+        public static void OnFileOpened(ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
-            
+            string fileName = messageEventArgs.Content;
+            try
+            {
+                quakeInfo = new QuakeInfo(fileName);
+            }
+            catch (ArgumentNullException e)
+            {
+                switch (e.ParamName)
+                {
+                    case "file":
+                        break;
+                    case "obj":
+                        break;
+                }
+            }
         }
 
-        /*
-        public static List<List<string>> FileReader(string filename)
+        static Jarvis()
         {
-
+            viewOpenFileEvent.ViewJarvisMessage += OnFileOpened;
         }
-        */
     }
 }

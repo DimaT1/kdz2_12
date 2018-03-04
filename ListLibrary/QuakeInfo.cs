@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListLibrary
+namespace ModelLibrary
 {
     /// <summary>
     /// Класс информации о землетрясениях

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace ListLibrary
+namespace ModelLibrary
 {
     /// <summary>
     /// Класс землетрясения
