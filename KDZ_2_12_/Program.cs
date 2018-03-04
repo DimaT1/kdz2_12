@@ -8,6 +8,7 @@ namespace KDZ_2_12_
 {
     static class Program
     {
+        public static Form1 ThisForm;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -16,7 +17,8 @@ namespace KDZ_2_12_
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            ThisForm = new Form1();
+            Application.Run(ThisForm);
         }
     }
 }

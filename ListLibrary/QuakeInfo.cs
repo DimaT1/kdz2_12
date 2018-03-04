@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+
 
 namespace ModelLibrary
 {
@@ -102,6 +104,16 @@ namespace ModelLibrary
                 }
             }
             return maxDepthQuake;
+        }
+
+        public List<List<string>> GetList(CultureInfo cultureInfo=null)
+        {
+            List<List<string>> res = new List<List<string>>(); 
+            foreach (EarthQuake quake in quakes)
+            {
+                res.Add(quake.GetList());
+            }
+            return res;
         }
     }
 }

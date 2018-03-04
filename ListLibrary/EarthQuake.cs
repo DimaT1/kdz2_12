@@ -100,7 +100,7 @@ namespace ModelLibrary
         /// Локаль по умолчанию английская.
         /// </summary>
         /// <returns></returns>
-        public List<string> ToStringList(CultureInfo cultureInfo=null)
+        public List<string> GetList(CultureInfo cultureInfo=null)
         {
             List<string> res = new List<string>
             {

@@ -17,22 +17,26 @@ namespace KDZ_2_12_
         public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>(),
                                                      viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
 
-        public static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
+        private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string fileName = messageEventArgs.Content;
             try
             {
                 quakeInfo = new QuakeInfo(fileName);
+                Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList());
+                currentFileName = fileName;
+
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentException e)
             {
                 switch (e.ParamName)
                 {
                     case "file":
-                        currentFileName = fileName;
-
+                        Form1.JarvisMessageEvent.OnViewJarvisMessage($"Файл {fileName} повреждён и не может быть открыт");
                         break;
                     case "obj":
+                        Form1.JarvisMessageEvent.OnViewJarvisMessage($"Некоторые значения файла {fileName} повреждены");
+                        currentFileName = fileName;
                         break;
                 }
             }

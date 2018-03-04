@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace ModelLibrary
 {
-    public static class CSVProcessor
+    static class CSVProcessor
     {
         /// <summary>
         /// Заголовок файла с данными
