@@ -49,11 +49,15 @@ namespace ModelLibrary
             return res;
         }
 
+        
         /// <summary>
-        /// Возвращает отсортированный по магнитуре список землетрясений
+        /// Возвращает отсортированный по магнитуре список максимальных землетрясений
         /// </summary>
-        /// <returns>Отсортированный по магнитуре список землетрясений</returns>
-        public List<EarthQuake> SortedByMag()
+        /// <param name="maxShift">Максимальное отклонение в баллах по шкале Рихтера</param>
+        /// <param name="minValue">Минимальное значение по шкале Рихтера</param>
+        /// <param name="itemCount">Максимальное количество элементов в списке</param>
+        /// <returns>Отсортированный по магнитуре список максимальных землетрясений</returns>
+        public List<EarthQuake> MaxListByMag(double maxShift, double minValue, long itemCount)
         {
             List<EarthQuake> res = quakes;
             res.Sort((q1, q2) => q1.Mag.CompareTo(q2.Mag));

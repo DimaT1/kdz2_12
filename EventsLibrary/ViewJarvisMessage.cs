@@ -15,7 +15,7 @@ namespace EventsLibrary
     {
         public event EventHandler<ViewJarvisMessageEventArgs<T>> ViewJarvisMessage;
 
-        public void OnJarvisMessage(T content)
+        public void OnViewJarvisMessage(T content)
         {
             ViewJarvisMessageEventArgs<T> args = new ViewJarvisMessageEventArgs<T>();
 

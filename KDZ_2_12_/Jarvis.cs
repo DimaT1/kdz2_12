@@ -12,10 +12,12 @@ namespace KDZ_2_12_
     {
         private static QuakeInfo quakeInfo;
         private static string currentFileName = null;
+        public static bool FileOpened => currentFileName != null;
 
-        public static ViewJarvisMessageEvent<string> viewOpenFileEvent, viewSaveFileEvent;
+        public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>(),
+                                                     viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
 
-        public static void OnFileOpened(ViewJarvisMessageEventArgs<string> messageEventArgs)
+        public static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string fileName = messageEventArgs.Content;
             try
@@ -27,6 +29,8 @@ namespace KDZ_2_12_
                 switch (e.ParamName)
                 {
                     case "file":
+                        currentFileName = fileName;
+
                         break;
                     case "obj":
                         break;

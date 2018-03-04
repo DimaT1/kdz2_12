@@ -128,6 +128,7 @@
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
             this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveFileToolStripMenuItem.Text = "Сохранить";
+            this.saveFileToolStripMenuItem.Click += new System.EventHandler(this.saveFileToolStripMenuItem_Click);
             // 
             // saveFileAsToolStripMenuItem
             // 
