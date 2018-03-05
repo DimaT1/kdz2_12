@@ -96,7 +96,7 @@ namespace ModelLibrary
         public const string Mag = "mag";
         public const string Stations = "stations";
         public const string StrError = "Error";
-        public const string StrNa = "Na";
+        public const string StrNa = "NA";
 
         /// <summary>
         /// Конструктор создаёт объект характеристики с отрицательной валидностью
