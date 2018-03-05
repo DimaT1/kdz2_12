@@ -40,6 +40,7 @@ namespace KDZ_2_12_
                 {
                     case "file":
                         Form1.JarvisMessageEvent.OnViewJarvisMessage($"Файл {fileName} повреждён и не может быть открыт");
+                        OnFileClosed();
                         break;
                 }
             }
