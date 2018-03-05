@@ -15,8 +15,10 @@ namespace KDZ_2_12_
         private static string currentFileName = null;
         public static bool FileOpened => currentFileName != null;
 
-        public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>(),
-                                                     viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
+        public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>();
+        public static ViewJarvisMessageEvent<string> viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
+        public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
+
 
         private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
@@ -27,12 +29,12 @@ namespace KDZ_2_12_
                 Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList(CultureInfo.GetCultureInfo("ru-RU")));
                 currentFileName = fileName;
                 Form1.JarvisSetTitleEvent.OnViewJarvisMessage(fileName);
-                if (!quakeInfo.Valid)
+                if (!quakeInfo.Valid || !quakeInfo.Correct)
                 {
                     Form1.JarvisMessageEvent.OnViewJarvisMessage($"Внимаие! Файл {fileName} открыт и содержит некорректные значения");
                 }
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 switch (e.ParamName)
                 {
@@ -43,9 +45,16 @@ namespace KDZ_2_12_
             }
         }
 
+        private static void OnFileClosed()
+        {
+            quakeInfo = new QuakeInfo();
+            currentFileName = null;
+        }
+
         static Jarvis()
         {
-            viewOpenFileEvent.ViewJarvisMessage += OnFileOpened;
+            viewOpenFileEvent.ViewJarvisMessageEvnt += OnFileOpened;
+            viewCloseFileEvent.ViewJarvisEvnt += OnFileClosed;
         }
     }
 }

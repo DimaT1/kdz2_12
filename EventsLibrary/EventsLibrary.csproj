@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ViewJarvisMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewJavrisNoMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

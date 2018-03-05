@@ -74,8 +74,8 @@ namespace KDZ_2_12_
         public Form1()
         {
             InitializeComponent();
-            JarvisMessageEvent.ViewJarvisMessage += OnJarvisMessageEvent;
-            JarvisListMessageEvent.ViewJarvisMessage += OnJarvisListMessageEvent;
+            JarvisMessageEvent.ViewJarvisMessageEvnt += OnJarvisMessageEvent;
+            JarvisListMessageEvent.ViewJarvisMessageEvnt += OnJarvisListMessageEvent;
         }
 
         /// <summary>
@@ -169,11 +169,14 @@ namespace KDZ_2_12_
                 switch (dialogResult)
                 {
                     case DialogResult.Yes:
+                        dataGridView1.Rows.Clear();
+                        dataGridView1.Refresh();
+                        Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
                         break;
                     case DialogResult.No:
                         dataGridView1.Rows.Clear();
                         dataGridView1.Refresh();
-
+                        Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
                         break;
                     case DialogResult.Cancel:
                         return;

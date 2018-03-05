@@ -46,7 +46,6 @@ namespace ModelLibrary
                     {
                         throw new ArgumentException($"file {filename} is invalid", "file");
                     }
-                    values[0] = values[0].Replace("\"", "");
                     res.Add(new EarthQuake(values, CultureInfo.GetCultureInfo("en-US")));
                 }
             }

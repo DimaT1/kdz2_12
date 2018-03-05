@@ -11,7 +11,7 @@ namespace ModelLibrary
     /// <summary>
     /// Класс информации о землетрясениях
     /// </summary>
-    public class QuakeInfo : IValid
+    public class QuakeInfo : IValid, ICorrect
     {
         /// <summary>
         /// Список землетрясений
@@ -33,9 +33,25 @@ namespace ModelLibrary
             get
             {
                 bool res = true;
-                for (int i = 0; i < quakes.Capacity && res; i++)
+                for (int i = 0; i < quakes.Count && res; i++)
                 {
                     res = res && quakes[i].Valid;
+                }
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Реализация интерфейса ICorrect
+        /// </summary>
+        public bool Correct
+        {
+            get
+            {
+                bool res = true;
+                for (int i = 0; i < quakes.Count && res; i++)
+                {
+                    res = res && quakes[i].Correct;
                 }
                 return res;
             }

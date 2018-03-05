@@ -8,7 +8,7 @@ namespace ModelLibrary
     /// Класс, описывающий обобщённую характеристику землетрясения
     /// </summary>
     /// <typeparam name="T">int, double</typeparam>
-    public class QuakeItem<T> : IFormattable, IComparable, IValid where T : IFormattable, IComparable
+    public class QuakeItem<T> : IFormattable, IComparable, IValid, ICorrect where T : IFormattable, IComparable
     {
         /// <summary>
         /// Численная характеристика землетрясения
@@ -22,22 +22,80 @@ namespace ModelLibrary
         {
             get
             {
-                if (objValid)
+                if (this.Correct)
                     return obj;
+                else if (objValid)
+                    throw new ArgumentException($"{typeof(T)} object {this} is incorrect", "objc");
                 else
-                    throw new ArgumentException($"{typeof(T)} object {this} is invalid", "obj");
+                    throw new ArgumentException($"{typeof(T)} object {this} is invalid", "objv");
             }
         }
 
         /// <summary>
-        /// Поле определяет валидность (действительность) характеристики
+        /// Поле определяет валидность (наличие) характеристики
         /// </summary>
         private bool objValid;
+
+        /// <summary>
+        /// Поле определяет название характеристики
+        /// </summary>
+        private string objName;
+
+        private bool objCorrect;
 
         /// <summary>
         /// Реализация интерфейса IValid
         /// </summary>
         public bool Valid => objValid;
+
+        /// <summary>
+        /// Реализация интерфейса ICorrect
+        /// </summary>
+        public bool Correct
+        {
+            get
+            {
+                const double minLat = -90,
+                    maxLat = 90,
+                    minLong = -180,
+                    maxLong = 180,
+                    minDepth = 0,
+                    maxDepth = 1000,
+                    minMag = 0,
+                    maxMag = 10;
+
+                if (!objCorrect)
+                {
+                    return false;
+                }
+
+                switch (objName)
+                {
+                    case Id:
+                        return objValid;
+                    case Lat:
+                        return objValid && (obj.CompareTo(minLat) > 0) && (obj.CompareTo(maxLat) < 0);
+                    case Long:
+                        return objValid && (obj.CompareTo(minLong) > 0) && (obj.CompareTo(maxLong) < 0);
+                    case Depth:
+                        return objValid && (obj.CompareTo(minDepth) > 0) && (obj.CompareTo(maxDepth) < 0);
+                    case Mag:
+                        return objValid && (obj.CompareTo(minMag) > 0) && (obj.CompareTo(maxMag) < 0);
+                    case Stations:
+                        return objValid;
+                }
+                return false;
+            }
+        }
+
+        public const string Id = "id";
+        public const string Lat = "lat";
+        public const string Long = "long";
+        public const string Depth = "depth";
+        public const string Mag = "mag";
+        public const string Stations = "stations";
+        public const string StrError = "Error";
+        public const string StrNa = "Na";
 
         /// <summary>
         /// Конструктор создаёт объект характеристики с отрицательной валидностью
@@ -52,9 +110,9 @@ namespace ModelLibrary
         /// </summary>
         /// <param name="str">Строка со значением характеристики</param>
         /// <param name="cultureInfo">Сведения о языке</param>
-        public QuakeItem(string str, CultureInfo cultureInfo)
+        public QuakeItem(string str, CultureInfo cultureInfo, string objName)
         {
-            this.SetFromStr(str, cultureInfo);
+            this.SetFromStr(str, cultureInfo, objName);
         }
 
         /// <summary>
@@ -62,11 +120,28 @@ namespace ModelLibrary
         /// </summary>
         /// <param name="str">Строка со значением характеристики</param>
         /// <param name="cultureInfo">Сведения о языке</param>
-        public void SetFromStr(string str, CultureInfo cultureInfo)
+        public void SetFromStr(string str, CultureInfo cultureInfo, string objName)
         {
-            if (cultureInfo == null)
+            if (str == StrError)
             {
-                cultureInfo = CultureInfo.GetCultureInfo("en-US");
+                objValid = true;
+                objCorrect = false;
+            }
+
+            switch (objName)
+            {
+                case Id:
+                    str = str.Replace("\"", "");
+                    break;
+                case Lat:
+                case Long:
+                case Depth:
+                case Mag:
+                    if (cultureInfo == null)
+                    {
+                        cultureInfo = CultureInfo.GetCultureInfo("en-US");
+                    }
+                    break;
             }
 
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
@@ -74,10 +149,13 @@ namespace ModelLibrary
             {
                 obj = (T)converter.ConvertFromString(null, cultureInfo, str);
                 objValid = true;
+                this.objName = objName;
+                objCorrect = true;
             }
             catch
             {
                 objValid = false;
+                objCorrect = false;
             }
         }
 
@@ -95,17 +173,43 @@ namespace ModelLibrary
                 formatProvider = CultureInfo.GetCultureInfo("en-US");
             }
 
-            if (objValid)
+            switch (objName)
             {
-                //TypeConverter converter = TypeDescriptor.GetConverter(typeof(string));
-                if (format != null)
-                {
-                    //string res = (string)converter.ConvertToString(obj);
-                    return obj.ToString(format, formatProvider);
-                }
-                return obj.ToString();
+                case Id:
+                    if (objValid)
+                    {
+                        if (Correct)
+                        {
+                            return "\"" + obj.ToString(format, formatProvider) + "\"";
+                        }
+                        return StrError;
+                    }
+                    return StrNa;
+                case Lat:
+                case Long:
+                case Depth:
+                case Mag:
+                    if (objValid)
+                    {
+                        if (Correct)
+                        {
+                            return obj.ToString(format, formatProvider);
+                        }
+                        return StrError;
+                    }
+                    return StrNa;
+                case Stations:
+                    if (objValid)
+                    {
+                        if (Correct)
+                        {
+                            return obj.ToString(format, formatProvider);
+                        }
+                        return StrError;
+                    }
+                    return StrNa;
             }
-            return "NA";
+            return StrNa;
         }
 
         /// <summary>
@@ -161,7 +265,7 @@ namespace ModelLibrary
         public int CompareTo(object other)
         {
             QuakeItem<T> otherQuake = new QuakeItem<T>();
-            otherQuake.SetFromStr(other.ToString(), CultureInfo.GetCultureInfo("en-US"));
+            otherQuake.SetFromStr(other.ToString(), CultureInfo.GetCultureInfo("en-US"), objName);
             return this.CompareTo(otherQuake);
         }
 

@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Coordinates.cs" />
     <Compile Include="CSVProcessor.cs" />
-    <Compile Include="IValid.cs" />
+    <Compile Include="IValidCorrect.cs" />
     <Compile Include="QuakeInfo.cs" />
     <Compile Include="QuakeItem.cs" />
     <Compile Include="EarthQuake.cs" />

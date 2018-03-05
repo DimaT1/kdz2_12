@@ -7,7 +7,7 @@ namespace ModelLibrary
     /// <summary>
     /// Класс землетрясения
     /// </summary>
-    public class EarthQuake : IFormattable, IValid
+    public class EarthQuake : IFormattable, IValid, ICorrect
     {
         /// <summary>
         /// Идентификатор землетрясения
@@ -68,6 +68,11 @@ namespace ModelLibrary
         /// </summary>
         public bool Valid => id.Valid && coordinates.Valid && depth.Valid && mag.Valid && stations.Valid;
 
+        /// <summary>
+        /// Реализация интерфейса ICorrect
+        /// </summary>
+        public bool Correct => id.Correct && coordinates.Correct && depth.Correct && mag.Correct && stations.Correct;
+
 
         /// <summary>
         /// Конструктор из списка строк
@@ -76,11 +81,11 @@ namespace ModelLibrary
         /// <param name="cultureInfo">Локаль языка</param>
         public EarthQuake(List<string> dataList, CultureInfo cultureInfo)
         {
-            id.SetFromStr(dataList[0], cultureInfo);
+            id.SetFromStr(dataList[0], cultureInfo, QuakeItem<int>.Id);
             coordinates = new Coordinates(dataList[1], dataList[2], cultureInfo);
-            depth.SetFromStr(dataList[3], cultureInfo);
-            mag.SetFromStr(dataList[4], cultureInfo);
-            stations.SetFromStr(dataList[5], cultureInfo);
+            depth.SetFromStr(dataList[3], cultureInfo, QuakeItem<double>.Depth);
+            mag.SetFromStr(dataList[4], cultureInfo, QuakeItem<double>.Mag);
+            stations.SetFromStr(dataList[5], cultureInfo, QuakeItem<int>.Stations);
         }
 
         /// <summary>
@@ -110,7 +115,7 @@ namespace ModelLibrary
                 coordinates.Long.ToString(cultureInfo),
 
                 depth.ToString(cultureInfo),
-                depth.ToString(cultureInfo),
+                mag.ToString(cultureInfo),
                 stations.ToString(cultureInfo)
             };
             return res;

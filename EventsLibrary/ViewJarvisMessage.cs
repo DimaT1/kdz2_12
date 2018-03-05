@@ -13,16 +13,16 @@ namespace EventsLibrary
 
     public class ViewJarvisMessageEvent<T>
     {
-        public event EventHandler<ViewJarvisMessageEventArgs<T>> ViewJarvisMessage;
+        public event EventHandler<ViewJarvisMessageEventArgs<T>> ViewJarvisMessageEvnt;
 
         public void OnViewJarvisMessage(T content)
         {
             ViewJarvisMessageEventArgs<T> args = new ViewJarvisMessageEventArgs<T>();
 
-            if (ViewJarvisMessage != null)
+            if (ViewJarvisMessageEvnt != null)
             {
                 args.Content = content;
-                ViewJarvisMessage(this, args);
+                ViewJarvisMessageEvnt(this, args);
             }
         }
     }

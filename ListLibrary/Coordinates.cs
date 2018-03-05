@@ -10,8 +10,9 @@ namespace ModelLibrary
     /// <summary>
     /// Структура описывает географические координаты землетрясения
     /// </summary>
-    struct Coordinates : IValid
+    struct Coordinates : IValid, ICorrect
     {
+
         /// <summary>
         /// Географическая широта
         /// </summary>
@@ -76,13 +77,18 @@ namespace ModelLibrary
         /// <param name="cultureInfo">Локаль языка</param>
         public Coordinates(string _lat, string _long, CultureInfo cultureInfo)
         {
-            this._lat = new QuakeItem<double>(_lat, cultureInfo);
-            this._long = new QuakeItem<double>(_long, cultureInfo);
+            this._lat = new QuakeItem<double>(_lat, cultureInfo, QuakeItem<double>.Lat);
+            this._long = new QuakeItem<double>(_long, cultureInfo, QuakeItem<double>.Long);
         }
 
         /// <summary>
         /// Реализация интерфейса IValid
         /// </summary>
         public bool Valid => _lat.Valid && _long.Valid;
+
+        /// <summary>
+        /// Реализация интерфейса ICorrect
+        /// </summary>
+        public bool Correct => _lat.Correct && _long.Correct;
     }
 }
