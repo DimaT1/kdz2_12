@@ -88,6 +88,7 @@ namespace ModelLibrary
             }
         }
 
+        /// Глобальные константы
         public const string Id = "id";
         public const string Lat = "lat";
         public const string Long = "long";
@@ -147,9 +148,9 @@ namespace ModelLibrary
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
             try
             {
+                this.objName = objName;
                 obj = (T)converter.ConvertFromString(null, cultureInfo, str);
                 objValid = true;
-                this.objName = objName;
                 objCorrect = true;
             }
             catch
