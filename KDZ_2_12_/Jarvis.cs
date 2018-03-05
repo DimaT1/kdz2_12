@@ -34,7 +34,7 @@ namespace KDZ_2_12_
                     Form1.JarvisMessageEvent.OnViewJarvisMessage($"Внимаие! Файл {fileName} открыт и содержит некорректные значения");
                 }
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentException e)
             {
                 switch (e.ParamName)
                 {
