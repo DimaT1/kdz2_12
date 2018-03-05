@@ -78,7 +78,6 @@ namespace ModelLibrary
             catch
             {
                 objValid = false;
-                throw new ArgumentException($"{typeof(T)} object {this} is invalid", "obj");
             }
         }
 

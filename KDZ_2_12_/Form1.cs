@@ -16,16 +16,32 @@ namespace KDZ_2_12_
     /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Событие получения сообщения от класса Jarvis
+        /// </summary>
         public static ViewJarvisMessageEvent<string> JarvisMessageEvent = new ViewJarvisMessageEvent<string>();
 
+        /// <summary>
+        /// Обработчик осбытия получения сообщения от класса Jarvis
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs">Аргументы сообщения</param>
         private void OnJarvisMessageEvent(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string message = messageEventArgs.Content;
             MessageBox.Show(message, "Cообщение");
         }
 
+        /// <summary>
+        /// Событие получения таблицы от класса Jarvis
+        /// </summary>
         public static ViewJarvisMessageEvent<List<List<string>>> JarvisListMessageEvent = new ViewJarvisMessageEvent<List<List<string>>>();
 
+        /// <summary>
+        /// Обработчик события получения таблицы от класса Jarvis
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs">Параметр сообщения</param>
         private void OnJarvisListMessageEvent(object sender, ViewJarvisMessageEventArgs<List<List<string>>> messageEventArgs)
         {
             dataGridView1.Rows.Clear();
@@ -37,6 +53,7 @@ namespace KDZ_2_12_
                 dataGridView1.Rows.Add(row.ToArray());
             }
         }
+
 
         public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new ViewJarvisMessageEvent<string>();
 
@@ -51,6 +68,9 @@ namespace KDZ_2_12_
             //Text = $"Редактирование файла {title}";
         }
 
+        /// <summary>
+        /// Конструктор View
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -58,8 +78,30 @@ namespace KDZ_2_12_
             JarvisListMessageEvent.ViewJarvisMessage += OnJarvisListMessageEvent;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки открытия файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (Jarvis.FileOpened)
+            {
+                DialogResult dialogResult = MessageBox.Show("Сохранить файл перед закрытием?", "Сообщение", MessageBoxButtons.YesNoCancel);
+                switch (dialogResult)
+                {
+                    case DialogResult.Yes:
+                        break;
+                    case DialogResult.No:
+                        break;
+                    case DialogResult.Cancel:
+                        return;
+                }
+            }
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
             using (var openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
@@ -71,6 +113,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveFileAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var saveFileDialog = new SaveFileDialog())
@@ -84,6 +131,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Jarvis.FileOpened)
@@ -100,6 +152,31 @@ namespace KDZ_2_12_
                     {
 
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки закрытия файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Jarvis.FileOpened)
+            {
+                DialogResult dialogResult = MessageBox.Show("Сохранить файл перед выходом?", "Сообщение", MessageBoxButtons.YesNoCancel);
+                switch (dialogResult)
+                {
+                    case DialogResult.Yes:
+                        break;
+                    case DialogResult.No:
+                        dataGridView1.Rows.Clear();
+                        dataGridView1.Refresh();
+
+                        break;
+                    case DialogResult.Cancel:
+                        return;
                 }
             }
         }

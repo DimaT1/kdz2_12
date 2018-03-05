@@ -11,19 +11,34 @@ namespace ModelLibrary
     /// <summary>
     /// Класс информации о землетрясениях
     /// </summary>
-    public class QuakeInfo
+    public class QuakeInfo : IValid
     {
         /// <summary>
         /// Список землетрясений
         /// </summary>
         private List<EarthQuake> quakes = new List<EarthQuake>();
-
+        
         /// <summary>
         /// Свойство списка землетрясений
         /// </summary>
         public List<EarthQuake> Quakes {
             set { quakes = value; }
             get { return quakes; }
+        }
+
+        /// <summary>
+        /// Реализация интерфейса IValid
+        /// </summary>
+        public bool Valid {
+            get
+            {
+                bool res = true;
+                for (int i = 0; i < quakes.Capacity && res; i++)
+                {
+                    res = res && quakes[i].Valid;
+                }
+                return res;
+            }
         }
 
         /// <summary>

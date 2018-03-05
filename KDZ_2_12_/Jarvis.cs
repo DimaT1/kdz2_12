@@ -26,7 +26,11 @@ namespace KDZ_2_12_
                 quakeInfo = new QuakeInfo(fileName);
                 Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList(CultureInfo.GetCultureInfo("ru-RU")));
                 currentFileName = fileName;
-
+                Form1.JarvisSetTitleEvent.OnViewJarvisMessage(fileName);
+                if (!quakeInfo.Valid)
+                {
+                    Form1.JarvisMessageEvent.OnViewJarvisMessage($"Внимаие! Файл {fileName} открыт и содержит некорректные значения");
+                }
             }
             catch (ArgumentException e)
             {
@@ -34,10 +38,6 @@ namespace KDZ_2_12_
                 {
                     case "file":
                         Form1.JarvisMessageEvent.OnViewJarvisMessage($"Файл {fileName} повреждён и не может быть открыт");
-                        break;
-                    case "obj":
-                        Form1.JarvisMessageEvent.OnViewJarvisMessage($"Некоторые значения файла {fileName} повреждены");
-                        currentFileName = fileName;
                         break;
                 }
             }

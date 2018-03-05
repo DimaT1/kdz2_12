@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDepth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStations = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,12 +42,6 @@
             this.saveFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColLat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColLong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDepth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStations = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,36 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(760, 522);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "№";
+            this.ColId.Name = "ColId";
+            // 
+            // ColLat
+            // 
+            this.ColLat.HeaderText = "Широта";
+            this.ColLat.Name = "ColLat";
+            // 
+            // ColLong
+            // 
+            this.ColLong.HeaderText = "Долгота";
+            this.ColLong.Name = "ColLong";
+            // 
+            // ColDepth
+            // 
+            this.ColDepth.HeaderText = "Глубина";
+            this.ColDepth.Name = "ColDepth";
+            // 
+            // ColMag
+            // 
+            this.ColMag.HeaderText = "Магнитуда";
+            this.ColMag.Name = "ColMag";
+            // 
+            // ColStations
+            // 
+            this.ColStations.HeaderText = "Станции";
+            this.ColStations.Name = "ColStations";
             // 
             // menuStrip1
             // 
@@ -112,42 +142,13 @@
             this.closeFileToolStripMenuItem.Name = "closeFileToolStripMenuItem";
             this.closeFileToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.closeFileToolStripMenuItem.Text = "Закрыть";
+            this.closeFileToolStripMenuItem.Click += new System.EventHandler(this.closeFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.exitToolStripMenuItem.Text = "Выход";
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "№";
-            this.ColId.Name = "ColId";
-            // 
-            // ColLat
-            // 
-            this.ColLat.HeaderText = "Широта";
-            this.ColLat.Name = "ColLat";
-            // 
-            // ColLong
-            // 
-            this.ColLong.HeaderText = "Долгота";
-            this.ColLong.Name = "ColLong";
-            // 
-            // ColDepth
-            // 
-            this.ColDepth.HeaderText = "Глубина";
-            this.ColDepth.Name = "ColDepth";
-            // 
-            // ColMag
-            // 
-            this.ColMag.HeaderText = "Магнитуда";
-            this.ColMag.Name = "ColMag";
-            // 
-            // ColStations
-            // 
-            this.ColStations.HeaderText = "Станции";
-            this.ColStations.Name = "ColStations";
             // 
             // Form1
             // 
