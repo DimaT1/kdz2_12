@@ -18,6 +18,7 @@ namespace KDZ_2_12_
         public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>();
         public static ViewJarvisMessageEvent<string> viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
         public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
+        public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new ViewJarvisMessageEvent<CellEventArgs>();
 
 
         private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
@@ -52,10 +53,20 @@ namespace KDZ_2_12_
             currentFileName = null;
         }
 
+        private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs<CellEventArgs> messageEventArgs)
+        {
+            CellEventArgs newCell = messageEventArgs.Content;
+            EarthQuake earthQuake = quakeInfo.Quakes[newCell.RowIndex];
+            earthQuake.SetElemFromStr(newCell.Content, newCell.ColumnIndex, CultureInfo.GetCultureInfo("ru-RU"));
+            string newVal = earthQuake.GetElemStr(newCell.ColumnIndex, CultureInfo.GetCultureInfo("ru-RU"));
+            
+        }
+
         static Jarvis()
         {
             viewOpenFileEvent.ViewJarvisMessageEvnt += OnFileOpened;
             viewCloseFileEvent.ViewJarvisEvnt += OnFileClosed;
+            viewCellChangedEvent.ViewJarvisMessageEvnt += OnCellChanged;
         }
     }
 }

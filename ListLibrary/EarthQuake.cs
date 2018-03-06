@@ -100,6 +100,51 @@ namespace ModelLibrary
             stations = new QuakeItem<int>();
         }
 
+        public void SetElemFromStr(string val, int index, CultureInfo cultureInfo)
+        {
+            switch (index)
+            {
+                case 0:
+                    id.SetFromStr(val, cultureInfo, QuakeItem<int>.Id);
+                    break;
+                case 1:
+                    coordinates.Lat.SetFromStr(val, cultureInfo, QuakeItem<double>.Lat);
+                    break;
+                case 2:
+                    coordinates.Long.SetFromStr(val, cultureInfo, QuakeItem<double>.Long);
+                    break;
+                case 3:
+                    depth.SetFromStr(val, cultureInfo, QuakeItem<double>.Depth);
+                    break;
+                case 4:
+                    mag.SetFromStr(val, cultureInfo, QuakeItem<double>.Mag);
+                    break;
+                case 5:
+                    stations.SetFromStr(val, cultureInfo, QuakeItem<int>.Stations);
+                    break;
+            }
+        }
+
+        public string GetElemStr(int index, CultureInfo cultureInfo)
+        {
+            switch (index)
+            {
+                case 0:
+                    return id.ToString(cultureInfo);
+                case 1:
+                    return coordinates.Lat.ToString(cultureInfo);
+                case 2:
+                    return coordinates.Long.ToString(cultureInfo);
+                case 3:
+                    return depth.ToString(cultureInfo);
+                case 4:
+                    return mag.ToString(cultureInfo);
+                case 5:
+                    return stations.ToString(cultureInfo);
+            }
+            return QuakeItem<int>.StrNa;
+        }
+
         /// <summary>
         /// Переводит объект землетрясения в список строк характеристик.
         /// Локаль по умолчанию английская.

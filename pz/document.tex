@@ -1,0 +1,300 @@
+
+\documentclass[a4paper,12pt, fleqn]{article}
+% fleqn - Выравнивание формул по левому краю
+
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%%% Работа с цветом
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+%\usepackage{leqno} % Нумерация формул слева
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{WinLogic/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+
+%%% Теоремы
+\theoremstyle{plain} % Это стиль по умолчанию, его можно не переопределять.
+%\newtheorem{theorem}{Теорема}[section]
+%\newtheorem{proposition}[theorem]{Утверждение}
+
+\theoremstyle{definition} % "Определение"
+%\newtheorem{corollary}{Следствие}[theorem]
+%\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{nonum}{Решение}
+
+%%% Программирование
+\usepackage{etoolbox} % логические операторы
+
+
+%%% Функции, свяханные с этим документом
+\newcommand{\DocumentNum}{
+	RU.17701729.506900-01 ТЗ 01-1
+}
+
+\newcommand{\Changing}{
+	\ensuremath{
+		$$
+		\begin{array}{|c|c|c|c|c|}
+		\hline
+		&&&&\\
+		\hline
+		\text{Изм.}&\text{Лист}&\text{№ докум.}&\text{Подп.}&\text{Дата}\\
+		\hline
+		\text{\DocumentNum}&&&&\\
+		\hline
+		\text{Инв. № подл.}&\text{Подп. и дата}&\text{Взам. инв. №}&\text{Инв. № дубл.}&\text{Подп. и дата}\\
+		\hline
+		\end{array}
+		$$
+	}
+}
+
+
+%%% Страница
+%\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=30mm}
+\geometry{right=10mm}
+%
+\usepackage{fancyhdr} % Колонтитулы
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0mm}  % Толщина линейки, отчеркивающей верхний колонтитул
+\lfoot{}%Нижний левый
+\rfoot{}%Нижний правый
+\rhead{Вариант 12}%Верхний правый
+\chead{Торилов Дмитрий}%Верхний в центре
+\lhead{}%Верхний левый
+\cfoot{\thepage} % По умолчанию здесь номер страницы
+
+
+\usepackage{setspace} % Интерлиньяж
+\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+
+\usepackage{soulutf8} % Модификаторы начертания
+
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\definecolor{my-color}{HTML}{226634}
+\hypersetup{				% Гиперссылки
+	unicode=true,           % русские буквы в раздела PDF
+	pdftitle={Пояснительная записка},   % Заголовок
+	pdfauthor={Автор},      % Автор
+	pdfsubject={КДЗ по программированию},      % Тема
+	pdfcreator={Создатель}, % Создатель
+	pdfproducer={Производитель}, % Производитель
+	pdfkeywords={keyword1} {key2} {key3}, % Ключевые слова
+	colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
+	linkcolor=black,          % внутренние ссылки
+	citecolor=my-color,        % на библиографию
+	filecolor=magenta,      % на файлы
+	urlcolor=cyan           % на URL
+}
+
+%\renewcommand{\familydefault}{\sfdefault} % Начертание шрифта
+
+\usepackage{csquotes} % Инструменты для ссылок
+
+%\usepackage[bibencoding=utf8]{biblatex}
+%\addbibresource{bib1.bib}
+%\addbibresource{GOST.bib}
+
+
+\usepackage{multicol} % Несколько колонок
+
+\author{Торилов Дмитрий}
+\title{Пояснительная записка}
+\date{\today}
+
+
+%\textbf{полужирный шрифт}
+%\textit{курсивом}
+
+\newcommand{\mc}[1]{%
+	%\underline{#1}%\colorbox{YellowGreen}{#1}%
+	%\ensuremath{
+	%	{\textcolor{blue}{\textbf{#1}}}
+	%}
+	%\boldsymbol{#1}
+	\cellcolor{YellowGreen}#1
+} % blue color highlighting
+%\textcolor{blue}{\textbf{Синий}}
+
+%%% Нумeрация формул зависит от раздела
+\numberwithin{equation}{section}
+
+
+%%% Программирование на LaTeX
+\usepackage{forloop}
+
+
+\newcommand{\Ssign}{\underline{\hspace{8em}}}
+
+
+\newcommand{\PeopleField}[1]{
+	\vbox to 10em{
+		#1\\
+		<<\underline{\hspace{1.8em}}>>
+		\underline{\hspace{10.5em}}
+		2018 г.
+	}
+}
+
+
+\newcommand{\StorageTable}{
+	$$
+	\begin{tabular}{|m{5mm}|p{7mm}|}
+	\hline
+	\rotatebox{90}{
+		Дата и подп.
+	}&\rule{0mm}{35mm}\\
+	\hline
+	\rotatebox{90}{
+		Инв. № дубл.
+	}&\rule{0mm}{25mm}\\
+	\hline
+	\rotatebox{90}{
+		Взвм. инв. №
+	}&\rule{0mm}{25mm}\\
+	\hline
+	\rotatebox{90}{
+		Дата и подп.
+	}&\rule{0mm}{35mm}\\
+	\hline
+	\rotatebox{90}{
+		Инв. № подл.
+	}&\rule{0mm}{25mm}\\
+	\hline
+	\end{tabular}
+	$$
+}
+
+%%% Содержание
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{0.5em}{1.5em}}
+\renewcommand{\l@subsection}{\@dottedtocline{1}{1.5em}{2.5em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{1}{3em}{3em}}
+\makeatother
+
+
+\begin{document}
+
+\begin{titlepage}
+		
+	\large
+	\begin{center}
+		НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ\\
+		<<ВЫСШАЯ ШКОЛА ЭКОНОМИКИ>>\\
+		Дисциплина: <<Программирование>>\\[10em]
+		
+		Контрольное домашнее задание\\
+		3 модуль\\
+		Вариант 12\\[7em]	
+	\end{center}
+	
+	\begin{flushright}
+		\PeopleField{
+			Выполнил\\
+			Студент группы БПИ173\\
+			\Ssign /Д. М. Торилов/
+		}
+		
+		Преподаватель: Максименкова О.В.,\\
+		старший преподаватель\\
+		департамента\\
+		программной инженерии\\
+		факультета компьютерных наук\\[7em]
+	\end{flushright}
+	
+	\begin{center}
+		Москва 2017	
+	\end{center}
+	
+	\normalsize
+	\newpage
+
+\end{titlepage}
+
+% Оглавление
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Условие задачи}
+Программа контрольного домашнего задания (КДЗ) должна представлять собой небольшую информационно-справочную систему (ИСС), основанную на файлах. В стандартном файле содержатся данные о землетрясениях. Данные из него загружаются в основную таблицу ИСС.\\[1em]
+Далее следует описание задания варианта \textnumero 12:\\[1em]
+Для представления данных о землетрясении использовать класс EarthQuake. Координаты землетрясения представлять объектом структуры. Класс QuakeInfo связан с объектами EarthQuake отношением агрегации и позволяет получать списки землетрясений, сгруппированные по количеству уловивших их станций; списки землетрясений с максимальной магнитурой; землетрясение произошедшее на минимальной и максимальной глубине. Модифицировать интерфейс так, чтобы указанные данные можно было отобразить.
+
+
+\section{Функции разрабатываемого приложения}
+
+\subsection{Варианты использования}
+Данная ИСС может быть использована для проведения исследований в области изучения землетрясений, в том числе в научных и образовательных целях.
+
+\subsection{Описание интерфейса пользователя}
+
+
+\section{Структура приложения}
+Приложение реализовано с использованием паттерна Model-View-Controller.
+\subsection{Диаграмма классов}
+
+\subsection{Описание классов, их полей и методов}
+(Кратко описывается назначение классов и других типов данных, введённых в программе. Перечисляются все члены типов и описываются естественным языком. Указываются виды отношений между классами.)
+
+
+\section{Распределение исходного кода по файлам проекта}
+Содержит не коды из файлов, а краткое описание на естественном языке, какой функционал реализуется тем или иным кодом)
+
+
+\section{Контрольный пример и описание результатов}
+(Контрольный пример – это аккуратно описанная последовательность действий, позволяющая проверить корректность работы функций программы по шагам. Это предполагает для каждого шага наличие входных и выходных данных или состояния интерфейса и т.п.)
+
+
+\section{Текст (код) программы}
+(только части написанные вручную).
+
+
+\section{Список литературы}
+оформленный по ГОСТ 7.05-2008 (в тексте пояснительной записки должны быть ссылки на цитируемую литературу). 
+
+
+\end{document}

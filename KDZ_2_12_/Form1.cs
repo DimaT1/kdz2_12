@@ -183,5 +183,10 @@ namespace KDZ_2_12_
                 }
             }
         }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            Jarvis.viewCellChangedEvent.OnViewJarvisMessage(new CellEventArgs(e.ColumnIndex, e.RowIndex, e.ToString()));
+        }
     }
 }
