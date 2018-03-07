@@ -57,7 +57,10 @@ namespace KDZ_2_12_
         {
             // newCell.content.tostring
             CellEventArgs newCell = messageEventArgs.Content;
-
+            if (newCell.RowIndex != -1)
+            {
+                List<string> list = quakeInfo.NewCell(newCell.Content.ToString(), newCell.ColumnIndex, newCell.RowIndex, CultureInfo.GetCultureInfo("ru-RU"));
+            }
         }
 
         static Jarvis()

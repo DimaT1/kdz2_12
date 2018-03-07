@@ -54,6 +54,7 @@ namespace KDZ_2_12_
             }
         }
 
+        public static ViewJarvisMessageEvent<List<string>> JarvisRowChangedEvent = new ViewJarvisMessageEvent<List<string>>();
 
         public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new ViewJarvisMessageEvent<string>();
 
@@ -61,6 +62,12 @@ namespace KDZ_2_12_
         {
             string title = messageEventArgs.Content;
             Program.ThisForm.Text = $"Редактирование файла {title}";
+        }
+
+        private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
+        {
+            List<string> row = messageEventArgs.Content;
+            // TODO - вывод строки в датагрид
         }
 
         private static void SetText(string title)
