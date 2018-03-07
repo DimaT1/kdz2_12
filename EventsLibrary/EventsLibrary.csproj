@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellEventArgs.cs" />
+    <Compile Include="RowChangedArgs.cs" />
     <Compile Include="ViewJarvisMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewJavrisNoMessage.cs" />

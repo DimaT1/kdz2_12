@@ -60,6 +60,7 @@ namespace KDZ_2_12_
             if (newCell.RowIndex != -1)
             {
                 List<string> list = quakeInfo.NewCell(newCell.Content.ToString(), newCell.ColumnIndex, newCell.RowIndex, CultureInfo.GetCultureInfo("ru-RU"));
+                Form1.JarvisRowChangedEvent.OnViewJarvisMessage(new RowChangedArgs(newCell.RowIndex, list));
             }
         }
 

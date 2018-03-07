@@ -54,7 +54,7 @@ namespace KDZ_2_12_
             }
         }
 
-        public static ViewJarvisMessageEvent<List<string>> JarvisRowChangedEvent = new ViewJarvisMessageEvent<List<string>>();
+        public static ViewJarvisMessageEvent<RowChangedArgs> JarvisRowChangedEvent = new ViewJarvisMessageEvent<RowChangedArgs>();
 
         public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new ViewJarvisMessageEvent<string>();
 
@@ -64,10 +64,15 @@ namespace KDZ_2_12_
             Program.ThisForm.Text = $"Редактирование файла {title}";
         }
 
-        private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
+        private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs<RowChangedArgs> messageEventArgs)
         {
-            List<string> row = messageEventArgs.Content;
-            // TODO - вывод строки в датагрид
+            RowChangedArgs args = messageEventArgs.Content;
+            Jarvis.viewCellChangedEvent.Plugged = false;
+            for (int i = 0; i < args.Row.Count; i++)
+            {
+                dataGridView1.Rows[args.RowIndex].Cells[i].Value = args.Row[i];
+            }
+            Jarvis.viewCellChangedEvent.Plugged = true;
         }
 
         private static void SetText(string title)
@@ -83,6 +88,7 @@ namespace KDZ_2_12_
             InitializeComponent();
             JarvisMessageEvent.ViewJarvisMessageEvnt += OnJarvisMessageEvent;
             JarvisListMessageEvent.ViewJarvisMessageEvnt += OnJarvisListMessageEvent;
+            JarvisRowChangedEvent.ViewJarvisMessageEvnt += OnJarvisRowChangedEvent;
         }
 
         /// <summary>
