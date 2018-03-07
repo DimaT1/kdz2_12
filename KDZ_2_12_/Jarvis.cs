@@ -55,11 +55,9 @@ namespace KDZ_2_12_
 
         private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs<CellEventArgs> messageEventArgs)
         {
+            // newCell.content.tostring
             CellEventArgs newCell = messageEventArgs.Content;
-            EarthQuake earthQuake = quakeInfo.Quakes[newCell.RowIndex];
-            earthQuake.SetElemFromStr(newCell.Content, newCell.ColumnIndex, CultureInfo.GetCultureInfo("ru-RU"));
-            string newVal = earthQuake.GetElemStr(newCell.ColumnIndex, CultureInfo.GetCultureInfo("ru-RU"));
-            
+
         }
 
         static Jarvis()
@@ -67,6 +65,7 @@ namespace KDZ_2_12_
             viewOpenFileEvent.ViewJarvisMessageEvnt += OnFileOpened;
             viewCloseFileEvent.ViewJarvisEvnt += OnFileClosed;
             viewCellChangedEvent.ViewJarvisMessageEvnt += OnCellChanged;
+            quakeInfo = new QuakeInfo();
         }
     }
 }

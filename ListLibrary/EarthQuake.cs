@@ -22,7 +22,7 @@ namespace ModelLibrary
         /// <summary>
         /// Координаты землетрясения
         /// </summary>
-        private Coordinates coordinates;
+        private Coordinates coordinates = new Coordinates();
         /// <summary>
         /// Свойство долготы землетрясения
         /// </summary>
@@ -95,6 +95,8 @@ namespace ModelLibrary
         {
             id = new QuakeItem<int>();
             coordinates = new Coordinates();
+            coordinates.Lat = new QuakeItem<double>();
+            coordinates.Long = new QuakeItem<double>();
             depth = new QuakeItem<double>();
             mag = new QuakeItem<double>();
             stations = new QuakeItem<int>();

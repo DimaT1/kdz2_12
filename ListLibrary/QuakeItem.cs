@@ -104,6 +104,7 @@ namespace ModelLibrary
         public QuakeItem()
         {
             objValid = false;
+            objCorrect = false;
         }
 
         /// <summary>

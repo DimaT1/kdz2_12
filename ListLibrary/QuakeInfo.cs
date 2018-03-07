@@ -60,7 +60,9 @@ namespace ModelLibrary
         /// <summary>
         /// Конструктор объекта
         /// </summary>
-        public QuakeInfo() { }
+        public QuakeInfo() {
+            quakes = new List<EarthQuake>();
+        }
 
         /// <summary>
         /// Конструктор объекта с чтением списка из файла
@@ -145,6 +147,22 @@ namespace ModelLibrary
                 res.Add(quake.GetList(cultureInfo));
             }
             return res;
+        }
+
+        public List<string> NewCell(string val, int columnIndex, int rowIndex, CultureInfo cultureInfo)
+        {
+            if (rowIndex == quakes.Count)
+            {
+                EarthQuake earthQuake = new EarthQuake();
+                earthQuake.SetElemFromStr(val, columnIndex, cultureInfo);
+                quakes.Add(earthQuake);
+                return earthQuake.GetList(cultureInfo);
+            }
+            else
+            {
+                quakes[rowIndex].SetElemFromStr(val, columnIndex, cultureInfo);
+                return quakes[rowIndex].GetList(cultureInfo);
+            }
         }
     }
 }
