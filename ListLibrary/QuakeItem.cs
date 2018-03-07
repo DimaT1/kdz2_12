@@ -74,13 +74,13 @@ namespace ModelLibrary
                     case Id:
                         return objValid;
                     case Lat:
-                        return objValid && (obj.CompareTo(minLat) > 0) && (obj.CompareTo(maxLat) < 0);
+                        return objValid && (obj.CompareTo(minLat) >= 0) && (obj.CompareTo(maxLat) <= 0);
                     case Long:
-                        return objValid && (obj.CompareTo(minLong) > 0) && (obj.CompareTo(maxLong) < 0);
+                        return objValid && (obj.CompareTo(minLong) >= 0) && (obj.CompareTo(maxLong) <= 0);
                     case Depth:
-                        return objValid && (obj.CompareTo(minDepth) > 0) && (obj.CompareTo(maxDepth) < 0);
+                        return objValid && (obj.CompareTo(minDepth) >= 0) && (obj.CompareTo(maxDepth) <= 0);
                     case Mag:
-                        return objValid && (obj.CompareTo(minMag) > 0) && (obj.CompareTo(maxMag) < 0);
+                        return objValid && (obj.CompareTo(minMag) >= 0) && (obj.CompareTo(maxMag) <= 0);
                     case Stations:
                         return objValid;
                 }
