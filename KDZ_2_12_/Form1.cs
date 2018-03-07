@@ -54,8 +54,6 @@ namespace KDZ_2_12_
             }
         }
 
-        public static ViewJarvisMessageEvent<RowChangedArgs> JarvisRowChangedEvent = new ViewJarvisMessageEvent<RowChangedArgs>();
-
         public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new ViewJarvisMessageEvent<string>();
 
         private void OnJarvisSetTitleEvent(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
@@ -63,6 +61,8 @@ namespace KDZ_2_12_
             string title = messageEventArgs.Content;
             Program.ThisForm.Text = $"Редактирование файла {title}";
         }
+
+        public static ViewJarvisMessageEvent<RowChangedArgs> JarvisRowChangedEvent = new ViewJarvisMessageEvent<RowChangedArgs>();
 
         private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs<RowChangedArgs> messageEventArgs)
         {
@@ -75,11 +75,6 @@ namespace KDZ_2_12_
             Jarvis.viewCellChangedEvent.Plugged = true;
         }
 
-        private static void SetText(string title)
-        {
-            //Text = $"Редактирование файла {title}";
-        }
-
         /// <summary>
         /// Конструктор View
         /// </summary>
@@ -89,6 +84,7 @@ namespace KDZ_2_12_
             JarvisMessageEvent.ViewJarvisMessageEvnt += OnJarvisMessageEvent;
             JarvisListMessageEvent.ViewJarvisMessageEvnt += OnJarvisListMessageEvent;
             JarvisRowChangedEvent.ViewJarvisMessageEvnt += OnJarvisRowChangedEvent;
+            JarvisSetTitleEvent.ViewJarvisMessageEvnt += OnJarvisSetTitleEvent;
         }
 
         /// <summary>

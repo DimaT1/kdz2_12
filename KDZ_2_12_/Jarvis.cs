@@ -51,6 +51,7 @@ namespace KDZ_2_12_
         {
             quakeInfo = new QuakeInfo();
             currentFileName = null;
+            Form1.JarvisSetTitleEvent.OnViewJarvisMessage("");
         }
 
         private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs<CellEventArgs> messageEventArgs)

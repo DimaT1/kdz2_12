@@ -61,8 +61,8 @@ namespace ModelLibrary
                     maxLong = 180,
                     minDepth = 0,
                     maxDepth = 1000,
-                    minMag = 0,
-                    maxMag = 10;
+                    minMag = 1,
+                    maxMag = 9.5;
 
                 if (!objCorrect)
                 {
