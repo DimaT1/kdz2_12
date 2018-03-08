@@ -5,20 +5,9 @@ using System.Globalization;
 
 namespace ModelLibrary
 {
-    /// <summary>
-    /// Класс, описывающий обобщённую характеристику землетрясения
-    /// </summary>
-    /// <typeparam name="T">int, double</typeparam>
     public class QuakeItem<T> : IFormattable, IComparable, IValid, ICorrect, IEquatable<QuakeItem<T>> where T : IFormattable, IComparable
     {
-        /// <summary>
-        /// Численная характеристика землетрясения
-        /// </summary>
         private T obj;
-
-        /// <summary>
-        /// Свойство характеристики obj
-        /// </summary>
         public T Obj
         {
             get
@@ -32,26 +21,14 @@ namespace ModelLibrary
             }
         }
 
-        /// <summary>
-        /// Поле определяет валидность (наличие) характеристики
-        /// </summary>
         private bool objValid;
 
-        /// <summary>
-        /// Поле определяет название характеристики
-        /// </summary>
         private string objName;
 
         private bool objCorrect;
 
-        /// <summary>
-        /// Реализация интерфейса IValid
-        /// </summary>
         public bool Valid => objValid;
 
-        /// <summary>
-        /// Реализация интерфейса ICorrect
-        /// </summary>
         public bool Correct
         {
             get
@@ -64,8 +41,6 @@ namespace ModelLibrary
                     maxDepth = 1000,
                     minMag = 1,
                     maxMag = 9.5;
-                const int minStat = 0;
-
 
                 if (!objCorrect)
                 {
@@ -85,13 +60,12 @@ namespace ModelLibrary
                     case Mag:
                         return objValid && (obj.CompareTo(minMag) >= 0) && (obj.CompareTo(maxMag) <= 0);
                     case Stations:
-                        return objValid && (obj.CompareTo(minStat) >= 0);
+                        return objValid;
                 }
                 return false;
             }
         }
 
-        /// Глобальные константы
         public const string Id = "id";
         public const string Lat = "lat";
         public const string Long = "long";
@@ -101,30 +75,16 @@ namespace ModelLibrary
         public const string StrError = "Error";
         public const string StrNa = "NA";
 
-        /// <summary>
-        /// Конструктор создаёт объект характеристики с отрицательной валидностью
-        /// </summary>
         public QuakeItem()
         {
             objValid = false;
             objCorrect = false;
         }
 
-        /// <summary>
-        /// Конструктор создаёт объект характеристики из строки и определяет валидность значения
-        /// </summary>
-        /// <param name="str">Строка со значением характеристики</param>
-        /// <param name="cultureInfo">Сведения о языке</param>
         public QuakeItem(string str, CultureInfo cultureInfo, string objName)
         {
             this.SetFromStr(str, cultureInfo, objName);
         }
-
-        /// <summary>
-        /// Устанавливает значение из строки и определяет валидность значения
-        /// </summary>
-        /// <param name="str">Строка со значением характеристики</param>
-        /// <param name="cultureInfo">Сведения о языке</param>
         public void SetFromStr(string str, CultureInfo cultureInfo, string objName)
         {
             if (str == StrError)
@@ -163,14 +123,6 @@ namespace ModelLibrary
                 objCorrect = false;
             }
         }
-
-        /// <summary>
-        /// Реализация интерфейса IFormattable.
-        /// Локаль по умолчанию английская.
-        /// </summary>
-        /// <param name="format">Формат строки</param>
-        /// <param name="formatProvider">Механизм для извлечения объекта с целью управления форматированием</param>
-        /// <returns>Строковое значение характеристики (NA при отрицательной валидности)</returns>
         public string ToString(string format, IFormatProvider formatProvider = null)
         {
             if (formatProvider == null)
@@ -216,33 +168,15 @@ namespace ModelLibrary
             }
             return StrNa;
         }
-
-        /// <summary>
-        /// Метод преобразования характеристики в строку
-        /// </summary>
-        /// <returns>Строковое значение характеристики (NA при отрицательной валидности)</returns>
         public override string ToString()
         {
             return $"{this}";
         }
-
-        /// <summary>
-        /// Метод преобразования характеристики в строку
-        /// </summary>
-        /// <param name="cultureInfo">Локаль языка</param>
-        /// <returns>Строковое значение характеристики (NA при отрицательной валидности)</returns>
         public string ToString(CultureInfo cultureInfo=null)
         {
             return this.ToString("", cultureInfo);
         }
 
-
-        /// <summary>
-        /// Реализация сравнения с другой характеристикой.
-        /// Не валидное значение считается меньшне валидного. 
-        /// </summary>
-        /// <param name="other">Другая характеристика</param>
-        /// <returns></returns>
         public int CompareTo(QuakeItem<T> other)
         {
             if (objValid)
@@ -259,14 +193,6 @@ namespace ModelLibrary
             }
             return 0;
         }
-
-        /// <summary>
-        /// Реализация интерфейса IComparable.
-        /// Не валидное значение считается меньшне валидного.
-        /// Объект приводится к английской локали языка
-        /// </summary>
-        /// <param name="other">Объект для сравнения</param>
-        /// <returns>Результат сравнения характеристики с объектом other</returns>
         public int CompareTo(object other)
         {
             QuakeItem<T> otherQuake = new QuakeItem<T>();
@@ -287,80 +213,32 @@ namespace ModelLibrary
                    Valid == other.Valid &&
                    Correct == other.Correct;
         }
-
-        /// <summary>
-        /// Перегрузка оператора <
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator <(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) < 0;
         }
 
-        /// <summary>
-        /// Перегрузка оператора >
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator >(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) > 0;
         }
 
-        /// <summary>
-        /// Перегрузка оператора <=
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator <=(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) <= 0;
         }
-
-        /// <summary>
-        /// Перегрузка оператора >=
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator >=(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) >= 0;
         }
-
-        /// <summary>
-        /// Перегрузка оператора ==
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator ==(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) == 0;
         }
-
-        /// <summary>
-        /// Перегрузка оператора !=
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator !=(QuakeItem<T> q1, QuakeItem<T> q2)
         {
             return q1.CompareTo(q2) != 0;
         }
-
-
-        /// <summary>
-        /// Перегрузка оператора <
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator <(QuakeItem<T> q1, double q2)
         {
             if (q1.Valid && q1.Correct)
@@ -373,12 +251,6 @@ namespace ModelLibrary
             }
         }
 
-        /// <summary>
-        /// Перегрузка оператора >
-        /// </summary>
-        /// <param name="q1">Первый операнд</param>
-        /// <param name="q2">Второй операнд</param>
-        /// <returns>Результат операции сравнения</returns>
         public static bool operator >(QuakeItem<T> q1, double q2)
         {
             if (q1.Valid && q1.Correct)

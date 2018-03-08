@@ -9,50 +9,18 @@ using System.Globalization;
 
 namespace KDZ_2_12_
 {
-    /// <summary>
-    /// Контроллер
-    /// </summary>
     public static class Jarvis
     {
-        /// <summary>
-        /// Модель агрегирована в контроллер
-        /// </summary>
         public static QuakeInfo quakeInfo;
-        /// <summary>
-        /// Имя файла, с которым ведётся работа
-        /// </summary>
         private static string currentFileName = null;
-        /// <summary>
-        /// Свойство корректного открытия файла
-        /// </summary>
         public static bool FileOpened => currentFileName != null;
 
-        /// <summary>
-        /// Событие обработчика открытия файла
-        /// </summary>
         public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>();
-        /// <summary>
-        /// Событие обработчика сохранения файла
-        /// </summary>
         public static ViewJarvisMessageEvent<SaveFileArgs> viewSaveFileEvent = new ViewJarvisMessageEvent<SaveFileArgs>();
-        /// <summary>
-        /// Событие закрытия файла
-        /// </summary>
         public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
-        /// <summary>
-        /// Событие обработчика изменения ячейки таблицы
-        /// </summary>
         public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new ViewJarvisMessageEvent<CellEventArgs>();
-        /// <summary>
-        /// Событие обработчика модификации списка
-        /// </summary>
         public static ViewJarvisMessageEvent<ModifyListClass> viewModListEvent = new ViewJarvisMessageEvent<ModifyListClass>();
 
-        /// <summary>
-        /// обработчик модификации списка
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="messageEventArgs"аргументы></param>
         private static void OnViewModList(object sender, ViewJarvisMessageEventArgs<ModifyListClass> messageEventArgs)
         {
             ModifyListClass mod = messageEventArgs.Content;
@@ -74,11 +42,7 @@ namespace KDZ_2_12_
             Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
 
-        /// <summary>
-        /// Обработчик открытия файла
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="messageEventArgs"></param>
+
         private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string fileName = messageEventArgs.Content;
@@ -90,7 +54,7 @@ namespace KDZ_2_12_
                 Form1.JarvisSetTitleEvent.OnViewJarvisMessage(fileName);
                 if (!quakeInfo.Valid || !quakeInfo.Correct)
                 {
-                    Form1.JarvisMessageEvent.OnViewJarvisMessage($"Внимаие! Файл {fileName} открыт и содержит некорректные значения");
+                    Form1.JarvisMessageEvent.OnViewJarvisMessage($"");
                 }
             }
             catch (ArgumentException e)
@@ -98,7 +62,7 @@ namespace KDZ_2_12_
                 switch (e.ParamName)
                 {
                     case "file":
-                        Form1.JarvisMessageEvent.OnViewJarvisMessage($"Файл {fileName} повреждён и не может быть открыт");
+                        Form1.JarvisMessageEvent.OnViewJarvisMessage($"");
                         OnFileClosed();
                         break;
                 }
@@ -108,11 +72,6 @@ namespace KDZ_2_12_
         }
 
 
-        /// <summary>
-        /// Обработчик сохранения файла
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="messageEventArgs"></param>
         private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<SaveFileArgs> messageEventArgs)
         {
             SaveFileArgs args = messageEventArgs.Content;
@@ -122,18 +81,15 @@ namespace KDZ_2_12_
             }
             if (args.Append)
             {
-                quakeInfo.SaveToFile(currentFileName, "append");
+                quakeInfo.SaveToFile(args.FileName, "append");
             }
             else
             {
-                quakeInfo.SaveToFile(currentFileName, "rewrite");
+                quakeInfo.SaveToFile(args.FileName, "rewrite");
                 Form1.JarvisSetTitleEvent.OnViewJarvisMessage(currentFileName);
             }
         }
 
-        /// <summary>
-        /// Обработчик закрытия файла
-        /// </summary>
         private static void OnFileClosed()
         {
             quakeInfo = new QuakeInfo();
@@ -143,11 +99,6 @@ namespace KDZ_2_12_
             Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
 
-        /// <summary>
-        /// Обработчик изменения ячейки
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="messageEventArgs"></param>
         private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs<CellEventArgs> messageEventArgs)
         {
             // newCell.content.tostring
@@ -161,9 +112,6 @@ namespace KDZ_2_12_
             }
         }
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
         static Jarvis()
         {
             viewOpenFileEvent.ViewJarvisMessageEvnt += OnFileOpened;

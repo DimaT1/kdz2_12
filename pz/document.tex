@@ -9,7 +9,10 @@
 \usepackage[T2A]{fontenc}			% кодировка
 \usepackage[utf8]{inputenc}			% кодировка исходного текста
 \usepackage[english,russian]{babel}	% локализация и переносы
-
+\usepackage{setspace}
+% одинарный интервал
+\singlespacing
+\small
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
 
@@ -221,6 +224,7 @@
 \renewcommand{\l@subsubsection}{\@dottedtocline{1}{3em}{3em}}
 \makeatother
 
+\usepackage{listings}
 
 \begin{document}
 
@@ -293,21 +297,134 @@
 		\end{enumerate}
 		\item \textbf{Закрыть}, позволяет прекратить работу с файлом, вызывает диалоговое окно с предложением сохранить файл перед закрытием				
 	\end{enumerate}
+	\item Кнопка \textbf{Таблица}, даёт доступ к кнопкам:
+	\begin{enumerate}
+		\item Кнопка \textbf{Сортировка}, даёт доступ к кнопкам:
+		\begin{enumerate}
+			\item \textbf{По номеру}, позволяет отсортировать таблицу по возрастанию идентификационных номеров элементов
+			\item \textbf{По станциям}, позволяет отсортировать таблицу по вохрастанию числа в количественной характеристике станций, засёкших землетрясение, соответствующее элементу			
+		\end{enumerate}
+		\item Кнопка \textbf{Удалить выделенную строку}, позволяет удалить выделенную строку из таблицы				
+	\end{enumerate}
+	\item Кнопка \textbf{Информация}, даёт доступ к кнопкам:
+	\begin{enumerate}
+		\item \textbf{Предельные значения}, позволяет увидеть короткий список диапазонов изменения характеристических величин элементов таблицы
+		\item \textbf{О программе}, позволяет увидеть информацию об авторе программы
+	\end{enumerate}
 \end{enumerate}
 \subsubsection{Панель управления}
+\begin{enumerate}
+	\item Поле \textbf{Добавление элемента} включает в себя
+	\begin{enumerate}
+		\item Поле ввода \textbf{Номер элемента}
+		\item Поле ввода \textbf{Широта элемента}
+		\item Поле ввода \textbf{Долгота элемента}
+		\item Поле ввода \textbf{Глубина элемента}
+		\item Поле ввода \textbf{Магнитуда элемента}
+		\item Поле ввода \textbf{Станции элемента}
+		\item Кнопка \textbf{Добавить}, создаёт элемент с характеристиками 1.1 - 1.6 и добавляет его в таблицу		
+	\end{enumerate}	
+	\item Поле \textbf{Землетрясения} включает в себя два подполя, \textbf{Максимальная глубина} (информация о землетрясении с максимальной глубиной) и \textbf{Минимальная глубина} (информация о землетрясении с минимальной глубиной), несущие полную информацию о таковых в таблице в режиме реального времени
+	\item Поле \textbf{Фильтрация по магнитуде} включает в себя два
+	\begin{enumerate}
+		\item Поле ввода \textbf{Магнитуда} для ввода вещественного значения магнитуды  
+		\item Кнопка \textbf{Фильтровать}, при нажатии удаляет из таблицы все данные о землетрясениях, магнитудой ниже чем в поле 3.1
+	\end{enumerate}
+	\item Кнопка \textbf{Выход} позволяет выйти из приложения
+\end{enumerate}
 \subsubsection{Панель работы с таблицей}
-
+Представляет из себя матрицу неограниченного числа строк и 6 столбцов с возможностью редактирования  
+\subsubsection{Всплывающие подсказки}
+Появляются при наведении курсора мыши на необходимый элемент. Несут дополнительную информацию об объекте.
 
 \section{Структура приложения}
-Приложение реализовано с использованием паттерна Model-View-Controller.
+Приложение реализовано с использованием паттерна Model-View-Controller. Model реализована объектом класса QuakeInfo. View реализована объектом Form1. Задачу Controller выполняет статический класс Jarvis. Ниже приведены необходимые для понимания детали структуры приложения.
 \subsection{Диаграмма классов}
-
+\newpage
+\includegraphics[width=1\linewidth]{ClassDiagram4.png}
 \subsection{Описание классов, их полей и методов}
-(Кратко описывается назначение классов и других типов данных, введённых в программе. Перечисляются все члены типов и описываются естественным языком. Указываются виды отношений между классами.)
+
+\subsubsection{Jarvis}
+Выполняет задачу синхронизации Model и View.\\
+Объект класса QuakeInfo связан со статическим классом Jarvis отношением агрегации. Планируется сделать их менее зависимыми с возможностью обмена данными через события.\\
+С объектом Form1 реализовано гибкое общение через события.\\[2em]
+\textbf{Поля}:
+\begin{itemize}
+	\item public static QuakeInfo quakeInfo - Модель агрегирована в контроллер
+	\item private static string currentFileName = null; - Имя файла, с которым ведётся работа
+\end{itemize}
+
+
+\textbf{Свойства}:
+
+\begin{itemize}
+	\item public static bool FileOpened => currentFileName != null; - Свойство корректного открытия файла
+\end{itemize}
+
+\textbf{Методы}:
+\begin{itemize}
+	\item private static void OnViewModList(object sender, ViewJarvisMessageEventArgs\\<ModifyListClass> messageEventArgs) - Обработчик вызова модификатора списка (сортировки и фильтрации)
+	\item private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs) - Обработчик открытия файла
+	\item private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<SaveFileArgs> messageEventArgs) - Обработчик сохранения файла
+	\item private static void OnFileClosed() - Обработчик закрытия файла
+	\item private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs\\<CellEventArgs> messageEventArgs) - Обработчик изменения ячейки
+	\item static Jarvis() - Конструктор
+\end{itemize}
+
+\textbf{События}:
+\begin{itemize}
+	\item public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new\\ ViewJarvisMessageEvent<string>(); - Событие обработчика открытия файла
+	\item public static ViewJarvisMessageEvent<SaveFileArgs> viewSaveFileEvent = new\\ ViewJarvisMessageEvent<SaveFileArgs>(); - Событие обработчика сохранения файла
+	\item public static ViewJarvisNoMessageEvent viewCloseFileEvent = new\\ ViewJarvisNoMessageEvent(); - Событие закрытия файла
+	\item public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new\\ ViewJarvisMessageEvent<CellEventArgs>(); - Событие обработчика изменения ячейки таблицы
+	\item public static ViewJarvisMessageEvent<ModifyListClass> viewModListEvent = new\\ ViewJarvisMessageEvent<ModifyListClass>(); - Событие обработчика модификации списка
+\end{itemize}
+\subsubsection{Form}
+Представляет реализацию View. Обменивается данными с Jarvis через события
+
+\textbf{Методы}:
+\begin{itemize}
+\item private void OnJarvisMessageEvent(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs) - Обработчик осбытия получения сообщения от класса Jarvis
+\item private void OnJarvisListMessageEvent(object sender, ViewJarvisMessageEventArgs\\<List<List<string>>> messageEventArgs) - Обработчик события получения таблицы от класса Jarvis
+\item private void OnJarvisSetTitleEvent(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs) - Обработчик события вывода сообщения
+\item private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs\\<RowChangedArgs> messageEventArgs) - Обработчик события изменения строки
+\item private void OnJarvisMaxDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs\\<List<string>> messageEventArgs) - Обработчик обновления информации об элементе с самой большой характеристикой глубины
+\item private void OnJarvisMinDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs\\<List<string>> messageEventArgs) - Обработчик события обновления информации об элементе с минимальной характеристикой глубины
+\item public Form1() - Конструктор View
+\item private void openFileToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки открытия файла
+\item private void closeFileToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки закрытия файла
+\item private void dataGridView1CellValueChanged(object sender, DataGridViewCellEventArgs e) - Обработчик изменения ячейки таблицы
+\item private void aboutToolStripMenuItemClick(object sender, EventArgs e) - Справка
+\item  private void valuesToolStripMenuItemClick(object sender, EventArgs e) - Предельные величины
+\item private void button1 Click(object sender, EventArgs e) - Кнопка выхода - обработчик
+\item private void button2 Click(object sender, EventArgs e) - Обработчик нажатия кнопки добавления строки
+\item private void Form1 FormClosing1(object sender, FormClosingEventArgs e) - Обработчик закрытия формы
+\item private void idToolStripMenuItemClick(object sender, EventArgs e) - Обработчик вызова сортировки по ID
+\item private void stationsToolStripMenuItemClick(object sender, EventArgs e) - Обработчик вызова сортировки по станциям
+\item private void button3 Click(object sender, EventArgs e) - Обработчик нажатия кнопки фильтрации
+\item private void delToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки удаления строки в таблице
+\item private void appendToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки дозаписи в файл
+\item private void appendAsToolStripMenuItem1Click(object sender, EventArgs e) - Обработчик нажатия кнопки дозаписи в файл
+\item private void saveFileAsToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки сохранения файла
+\item private void saveFileToolStripMenuItemClick(object sender, EventArgs e) - Обработчик нажатия кнопки сохранения файла
+\end{itemize}
+
+\textbf{События}:
+\begin{itemize}
+	\item public static ViewJarvisMessageEvent<string> JarvisMessageEvent = new\\ ViewJarvisMessageEvent<string>(); - Событие получения сообщения от класса Jarvis
+	\item public static ViewJarvisMessageEvent<List<List<string>>> JarvisListMessageEvent = new ViewJarvisMessageEvent<List<List<string>>>(); - Событие получения таблицы от класса Jarvis
+	\item public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new\\ ViewJarvisMessageEvent<string>(); - Событие вывода сообщения
+	\item public static ViewJarvisMessageEvent<RowChangedArgs> JarvisRowChangedEvent = new ViewJarvisMessageEvent<RowChangedArgs>(); - Событие изменения строки
+	\item public static ViewJarvisMessageEvent<List<string>> JarvisMaxDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>(); - Событие обновления информации об элементе с самой большой характеристикой глубины
+	\item public static ViewJarvisMessageEvent<List<string>> JarvisMinDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>(); - Событие обновления информации об элементе с минимальной характеристикой глубины
+\end{itemize}
 
 
 \section{Распределение исходного кода по файлам проекта}
-Содержит не коды из файлов, а краткое описание на естественном языке, какой функционал реализуется тем или иным кодом)
+Описание модели содержится в файле QuakeInfo.cs. Все файлы из библиотеки классов ModelLibrary являются вспомогательными.\\
+Описание контроллера содержится в файле Jarvis.cs.\\
+Работа с интерфейсом описана в Form1.cs.
+События для обмена информацией между Jarvis и Form1 описаны в библиотеке классов EventsLibrary.
 
 
 \section{Контрольный пример и описание результатов}
@@ -315,11 +432,33 @@
 
 
 \section{Текст (код) программы}
-(только части написанные вручную).
+\subsection{Events Library}
+\subsubsection{ViewJarvisMessage}
+\lstinputlisting{ViewJarvisMessage.cs}
+\subsection{KDZ}
+\subsubsection{Form1}
+\lstinputlisting{Form1.cs}
+\subsubsection{Jarvis}
+\lstinputlisting{Jarvis.cs}
+\subsection{ModelLibrary}
+\subsubsection{QuakeInfo}
+\lstinputlisting{QuakeInfo.cs}
+\subsubsection{CSVProcessor}
+\lstinputlisting{CSVProcessor.cs}
 
-
+\newpage
 \section{Список литературы}
-оформленный по ГОСТ 7.05-2008 (в тексте пояснительной записки должны быть ссылки на цитируемую литературу). 
+
+1. Охота на мифический MVC. Построение пользовательского интерфейса - cobiot
+27 февраля 2017 - https://habrahabr.ru/post/322700/\\
+2. Changing the form title text programmatically - February 04, 2008\\ - https://social.msdn.microsoft.com/Forums/en-US/b958c565-94bb-464d-9075-5163384d3887\\/changing-the-form-title-text-programmatically?forum=winforms\\
+3. Географические координаты - Википедия - https://ru.wikipedia.org/wiki/\\Географические\_координаты\\
+4. Землетрясение - Википедия - https://ru.wikipedia.org/wiki/Землетрясение\\
+5. Магнитуда землетрясения - Википедия - https://ru.wikipedia.org/wiki/\\Магнитуда\_землетрясения\\
+6. Обобщенные классы - https://professorweb.ru -\\ https://professorweb.ru/my/csharp/charp\_theory/level11/11\_2.php\\
+7.openFileDialog, saveFileDialog - stackoverflow.com - \\ https://ru.stackoverflow.com/questions/87480/openfiledialog-savefiledialog\\
+8. C# 6.0. Справочник. Полное описание языка - Джозеф Албахари, Бен Албахари - O’Reilly - C# 6.0 in a Nutshell: The Definitive Reference - Joseph Albahari, Ben Albahari
+
 
 
 \end{document}

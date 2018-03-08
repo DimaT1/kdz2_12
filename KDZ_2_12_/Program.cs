@@ -15,10 +15,19 @@ namespace KDZ_2_12_
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            ThisForm = new Form1();
-            Application.Run(ThisForm);
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                ThisForm = new Form1();
+                Application.Run(ThisForm);
+
+            }
+            catch
+            {
+
+            }
+            
         }
     }
 }
