@@ -20,7 +20,6 @@ namespace KDZ_2_12_
         public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
         public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new ViewJarvisMessageEvent<CellEventArgs>();
 
-
         private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string fileName = messageEventArgs.Content;
@@ -45,6 +44,8 @@ namespace KDZ_2_12_
                         break;
                 }
             }
+            Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
+            Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
 
         private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
@@ -58,6 +59,8 @@ namespace KDZ_2_12_
             quakeInfo = new QuakeInfo();
             currentFileName = null;
             Form1.JarvisSetTitleEvent.OnViewJarvisMessage("");
+            Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
+            Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
 
         private static void OnCellChanged(object sender, ViewJarvisMessageEventArgs<CellEventArgs> messageEventArgs)
@@ -68,6 +71,8 @@ namespace KDZ_2_12_
             {
                 List<string> list = quakeInfo.NewCell(newCell.Content.ToString(), newCell.ColumnIndex, newCell.RowIndex, CultureInfo.GetCultureInfo("ru-RU"));
                 Form1.JarvisRowChangedEvent.OnViewJarvisMessage(new RowChangedArgs(newCell.RowIndex, list));
+                Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
+                Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
             }
         }
 
@@ -77,6 +82,8 @@ namespace KDZ_2_12_
             viewCloseFileEvent.ViewJarvisEvnt += OnFileClosed;
             viewCellChangedEvent.ViewJarvisMessageEvnt += OnCellChanged;
             quakeInfo = new QuakeInfo();
+            Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
+            Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
     }
 }

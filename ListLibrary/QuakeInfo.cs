@@ -99,18 +99,21 @@ namespace ModelLibrary
             return res;
         }
 
+        public List<string> MinDepthQuake => getMinDepthQuake().GetList();
+        public List<string> MaxDepthQuake => getMaxDepthQuake().GetList();
+
         /// <summary>
         /// Поиск землетрясения, произошеднего на минимальной глубине.
         /// </summary>
         /// <returns></returns>
-        public EarthQuake GetMinDepthQuake()
+        private EarthQuake getMinDepthQuake()
         {
             EarthQuake minDepthQuake = new EarthQuake();
             foreach (EarthQuake quake in quakes)
             {
-                if (quake.Depth.Valid)
+                if (quake.Correct)
                 {
-                    if (!minDepthQuake.Depth.Valid || quake.Depth < minDepthQuake.Depth)
+                    if (!minDepthQuake.Correct || quake.Depth < minDepthQuake.Depth)
                     {
                         minDepthQuake = quake;
                     }
@@ -123,14 +126,14 @@ namespace ModelLibrary
         /// Поиск землетрясения, произошеднего на максимальной глубине.
         /// </summary>
         /// <returns></returns>
-        public EarthQuake GetMaxDepthQuake()
+        private EarthQuake getMaxDepthQuake()
         {
             EarthQuake maxDepthQuake = new EarthQuake();
             foreach (EarthQuake quake in quakes)
             {
-                if (quake.Depth.Valid)
+                if (quake.Correct)
                 {
-                    if (!maxDepthQuake.Depth.Valid || quake.Depth > maxDepthQuake.Depth)
+                    if (!maxDepthQuake.Correct || quake.Depth > maxDepthQuake.Depth)
                     {
                         maxDepthQuake = quake;
                     }

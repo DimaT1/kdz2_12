@@ -247,7 +247,7 @@ namespace ModelLibrary
             {
                 if (other.objValid)
                 {
-                    return obj.CompareTo(other);
+                    return obj.CompareTo(other.obj);
                 }
                 return 1;
             }

@@ -75,6 +75,32 @@ namespace KDZ_2_12_
             Jarvis.viewCellChangedEvent.Plugged = true;
         }
 
+        public static ViewJarvisMessageEvent<List<string>> JarvisMaxDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>();
+
+        private void OnJarvisMaxDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
+        {
+            List<string> args = messageEventArgs.Content;
+            label23.Text = args[0];
+            label3.Text = args[1];
+            label5.Text = args[2];
+            label7.Text = args[3];
+            label9.Text = args[4];
+            label11.Text = args[5];
+        }
+
+        public static ViewJarvisMessageEvent<List<string>> JarvisMinDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>();
+
+        private void OnJarvisMinDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
+        {
+            List<string> args = messageEventArgs.Content;
+            label24.Text = args[0];
+            label20.Text = args[1];
+            label18.Text = args[2];
+            label16.Text = args[3];
+            label14.Text = args[4];
+            label12.Text = args[5];
+        }
+
         /// <summary>
         /// Конструктор View
         /// </summary>
@@ -85,6 +111,21 @@ namespace KDZ_2_12_
             JarvisListMessageEvent.ViewJarvisMessageEvnt += OnJarvisListMessageEvent;
             JarvisRowChangedEvent.ViewJarvisMessageEvnt += OnJarvisRowChangedEvent;
             JarvisSetTitleEvent.ViewJarvisMessageEvnt += OnJarvisSetTitleEvent;
+            JarvisMaxDepthUpdatedEvent.ViewJarvisMessageEvnt += OnJarvisMaxDepthUpdatedEvent;
+            JarvisMinDepthUpdatedEvent.ViewJarvisMessageEvnt += OnJarvisMinDepthUpdatedEvent;
+
+            label23.Text = "NA";
+            label3.Text = "NA";
+            label5.Text = "NA";
+            label7.Text = "NA";
+            label9.Text = "NA";
+            label11.Text = "NA";
+            label24.Text = "NA";
+            label20.Text = "NA";
+            label18.Text = "NA";
+            label16.Text = "NA";
+            label14.Text = "NA";
+            label12.Text = "NA";
         }
 
         /// <summary>
