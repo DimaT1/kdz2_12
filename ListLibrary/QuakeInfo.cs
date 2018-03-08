@@ -222,5 +222,13 @@ namespace ModelLibrary
                     break;
             }
         }
+
+        public EarthQuake EarthQuake
+        {
+            get => default(EarthQuake);
+            set
+            {
+            }
+        }
     }
 }

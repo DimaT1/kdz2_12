@@ -175,5 +175,61 @@ namespace KDZ_2_12_
             viewModListEvent.ViewJarvisMessageEvnt += OnViewModList;
             viewSaveFileEvent.ViewJarvisMessageEvnt += OnSaveFile;
         }
+
+        public static CellEventArgs CellEventArgs
+        {
+            get => default(CellEventArgs);
+            set
+            {
+            }
+        }
+
+        public static ViewJarvisNoMessageEvent ViewJarvisNoMessageEvent
+        {
+            get => default(ViewJarvisNoMessageEvent);
+            set
+            {
+            }
+        }
+
+        public static ModifyListClass ModifyListClass
+        {
+            get => default(ModifyListClass);
+            set
+            {
+            }
+        }
+
+        public static SaveFileArgs SaveFileArgs
+        {
+            get => default(SaveFileArgs);
+            set
+            {
+            }
+        }
+
+        public static RowChangedArgs RowChangedArgs
+        {
+            get => default(RowChangedArgs);
+            set
+            {
+            }
+        }
+
+        public static ViewJarvisMessageEventArgs<object> ViewJarvisMessageEventArgs
+        {
+            get => default(ViewJarvisMessageEventArgs<object>);
+            set
+            {
+            }
+        }
+
+        public static ViewJarvisMessageEvent<object> ViewJarvisMessageEvent
+        {
+            get => default(ViewJarvisMessageEvent<object>);
+            set
+            {
+            }
+        }
     }
 }
