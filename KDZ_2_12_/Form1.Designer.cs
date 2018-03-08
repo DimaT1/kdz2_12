@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColLat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,6 +92,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -276,6 +278,7 @@
             this.button1.Size = new System.Drawing.Size(132, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Выход";
+            this.toolTip1.SetToolTip(this.button1, "Выйти из приложения");
             this.button1.UseVisualStyleBackColor = false;
             // 
             // groupBox1
@@ -289,6 +292,7 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Землетрясения";
+            this.toolTip1.SetToolTip(this.groupBox1, "Информация о землетрясениях");
             // 
             // groupBox2
             // 
@@ -319,6 +323,7 @@
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "№";
+            this.toolTip1.SetToolTip(this.label1, "ID землетрясения");
             // 
             // label2
             // 
@@ -328,6 +333,7 @@
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Широта:";
+            this.toolTip1.SetToolTip(this.label2, "Градусы");
             // 
             // label3
             // 
@@ -346,6 +352,7 @@
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Долгота:";
+            this.toolTip1.SetToolTip(this.label4, "Градусы");
             // 
             // label5
             // 
@@ -364,6 +371,7 @@
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Глубина:";
+            this.toolTip1.SetToolTip(this.label6, "Км");
             // 
             // label7
             // 
@@ -382,6 +390,7 @@
             this.label8.Size = new System.Drawing.Size(64, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Магнитуда:";
+            this.toolTip1.SetToolTip(this.label8, "Баллы по шкале Рихтера");
             // 
             // label9
             // 
@@ -400,6 +409,7 @@
             this.label10.Size = new System.Drawing.Size(52, 13);
             this.label10.TabIndex = 9;
             this.label10.Text = "Станции:";
+            this.toolTip1.SetToolTip(this.label10, "Количество");
             // 
             // label11
             // 
@@ -448,6 +458,7 @@
             this.label13.Size = new System.Drawing.Size(52, 13);
             this.label13.TabIndex = 9;
             this.label13.Text = "Станции:";
+            this.toolTip1.SetToolTip(this.label13, "Количество");
             // 
             // label14
             // 
@@ -466,6 +477,7 @@
             this.label15.Size = new System.Drawing.Size(64, 13);
             this.label15.TabIndex = 7;
             this.label15.Text = "Магнитуда:";
+            this.toolTip1.SetToolTip(this.label15, "Баллы по шкале Рихтера");
             // 
             // label16
             // 
@@ -484,6 +496,7 @@
             this.label17.Size = new System.Drawing.Size(51, 13);
             this.label17.TabIndex = 5;
             this.label17.Text = "Глубина:";
+            this.toolTip1.SetToolTip(this.label17, "Км");
             // 
             // label18
             // 
@@ -502,6 +515,7 @@
             this.label19.Size = new System.Drawing.Size(53, 13);
             this.label19.TabIndex = 3;
             this.label19.Text = "Долгота:";
+            this.toolTip1.SetToolTip(this.label19, "Градусы");
             // 
             // label20
             // 
@@ -520,6 +534,7 @@
             this.label21.Size = new System.Drawing.Size(48, 13);
             this.label21.TabIndex = 1;
             this.label21.Text = "Широта:";
+            this.toolTip1.SetToolTip(this.label21, "Градусы");
             // 
             // label22
             // 
@@ -529,6 +544,7 @@
             this.label22.Size = new System.Drawing.Size(18, 13);
             this.label22.TabIndex = 0;
             this.label22.Text = "№";
+            this.toolTip1.SetToolTip(this.label22, "ID землетрясения");
             // 
             // label23
             // 
@@ -571,6 +587,7 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Добавление элемента";
+            this.toolTip1.SetToolTip(this.groupBox3, "Добавить элемент в список");
             // 
             // textBox1
             // 
@@ -581,6 +598,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.textBox1, "ID землетрясения");
             // 
             // label25
             // 
@@ -603,6 +621,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.textBox2, "Градусы");
             // 
             // textBox3
             // 
@@ -613,6 +632,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.textBox3, "Градусы");
             // 
             // textBox4
             // 
@@ -623,6 +643,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.textBox4, "Км");
             // 
             // textBox5
             // 
@@ -633,6 +654,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.textBox5, "Баллы по шкале Рихтера");
             // 
             // textBox6
             // 
@@ -641,6 +663,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
             this.textBox6.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.textBox6, "Количество");
             // 
             // button2
             // 
@@ -652,6 +675,7 @@
             this.button2.Size = new System.Drawing.Size(105, 39);
             this.button2.TabIndex = 7;
             this.button2.Text = "Добавить";
+            this.toolTip1.SetToolTip(this.button2, "Добавление элемента в список");
             this.button2.UseVisualStyleBackColor = false;
             // 
             // label26
@@ -807,6 +831,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
