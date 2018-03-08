@@ -490,5 +490,69 @@ namespace KDZ_2_12_
                 }
             }
         }
+
+        public ViewJarvisMessageEvent<object> ViewJarvisMessageEvent
+        {
+            get => default(ViewJarvisMessageEvent<object>);
+            set
+            {
+            }
+        }
+
+        public RowChangedArgs RowChangedArgs
+        {
+            get => default(RowChangedArgs);
+            set
+            {
+            }
+        }
+
+        public ViewJarvisMessageEventArgs<object> ViewJarvisMessageEventArgs
+        {
+            get => default(ViewJarvisMessageEventArgs<object>);
+            set
+            {
+            }
+        }
+
+        public SaveFileArgs SaveFileArgs
+        {
+            get => default(SaveFileArgs);
+            set
+            {
+            }
+        }
+
+        public ModifyListClass ModifyListClass
+        {
+            get => default(ModifyListClass);
+            set
+            {
+            }
+        }
+
+        public ViewJarvisEventDelegate ViewJarvisEventDelegate
+        {
+            get => default(ViewJarvisEventDelegate);
+            set
+            {
+            }
+        }
+
+        public ViewJarvisNoMessageEvent ViewJarvisNoMessageEvent
+        {
+            get => default(ViewJarvisNoMessageEvent);
+            set
+            {
+            }
+        }
+
+        public CellEventArgs CellEventArgs
+        {
+            get => default(CellEventArgs);
+            set
+            {
+            }
+        }
     }
 }
