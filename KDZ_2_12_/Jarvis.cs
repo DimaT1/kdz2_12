@@ -19,7 +19,14 @@ namespace KDZ_2_12_
         public static ViewJarvisMessageEvent<string> viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
         public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
         public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new ViewJarvisMessageEvent<CellEventArgs>();
-
+        //public static ViewJarvisMessageEvent<List<string>> viewAddRow = new ViewJarvisMessageEvent<List<string>>();
+        /*
+        private static void OnAddRow(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
+        {
+            List<string> list = messageEventArgs.Content;
+            quakeInfo.Quakes.Add(new EarthQuake(list, CultureInfo.GetCultureInfo("ru-RU")));
+        }
+        */
         private static void OnFileOpened(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string fileName = messageEventArgs.Content;

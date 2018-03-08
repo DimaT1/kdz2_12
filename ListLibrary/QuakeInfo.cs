@@ -154,7 +154,7 @@ namespace ModelLibrary
 
         public List<string> NewCell(string val, int columnIndex, int rowIndex, CultureInfo cultureInfo)
         {
-            if (rowIndex == quakes.Count)
+            if (rowIndex >= quakes.Count)
             {
                 EarthQuake earthQuake = new EarthQuake();
                 earthQuake.SetElemFromStr(val, columnIndex, cultureInfo);

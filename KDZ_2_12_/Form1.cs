@@ -73,6 +73,7 @@ namespace KDZ_2_12_
                 dataGridView1.Rows[args.RowIndex].Cells[i].Value = args.Row[i];
             }
             Jarvis.viewCellChangedEvent.Plugged = true;
+            dataGridView1.Refresh();
         }
 
         public static ViewJarvisMessageEvent<List<string>> JarvisMaxDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>();
@@ -259,6 +260,51 @@ namespace KDZ_2_12_
         private void valuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Величины корректны, если находятся в следующем диапазоне:\nШирота: -90 .. 90 (градусы)\nДолгота: -180 .. 180 (градусы)\nГлубина: 0 .. 1000 (км)\nМагнитуда: 1 .. 9,5\nСтанции: 0 и больше", "Информация", MessageBoxButtons.OK);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти?", "Землетрясения ИСС",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Add("NA", "NA", "NA", "NA", "NA", "NA");
+            List<string> list = new List<string>
+            {
+                textBox1.Text,
+                textBox2.Text,
+                textBox3.Text,
+                textBox4.Text,
+                textBox5.Text,
+                textBox6.Text
+            };
+
+            int rowIndex = dataGridView1.RowCount - 2;
+
+            for (int i = 0; i < 6; i++)
+            {
+                Jarvis.viewCellChangedEvent.OnViewJarvisMessage(new CellEventArgs(i, rowIndex, list[i]));
+            }
+
+            Jarvis.viewCellChangedEvent.Plugged = false;
+            dataGridView1.Refresh();
+            //dataGridView1.Rows.Add();
+            //dataGridView1.Refresh();
+            Jarvis.viewCellChangedEvent.Plugged = true;
+        }
+
+        private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти?", "Землетрясения ИСС",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
