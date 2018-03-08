@@ -306,6 +306,8 @@ namespace KDZ_2_12_
                     {
                         Jarvis.quakeInfo.Quakes.RemoveAt(dataGridView1.SelectedRows[0].Index);
                         dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                        JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(Jarvis.quakeInfo.MinDepthQuake);
+                        JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(Jarvis.quakeInfo.MaxDepthQuake);
                     }
                     else
                     {
