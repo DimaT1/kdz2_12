@@ -47,6 +47,12 @@ namespace KDZ_2_12_
             }
         }
 
+        private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
+        {
+            string fileName = messageEventArgs.Content;
+            //quakeInfo.
+        }
+
         private static void OnFileClosed()
         {
             quakeInfo = new QuakeInfo();

@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColLat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColLong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDepth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStations = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +36,14 @@
             this.saveFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.дозаписатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.дозаписатьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColLong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDepth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStations = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,36 +66,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(760, 522);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "№";
-            this.ColId.Name = "ColId";
-            // 
-            // ColLat
-            // 
-            this.ColLat.HeaderText = "Широта";
-            this.ColLat.Name = "ColLat";
-            // 
-            // ColLong
-            // 
-            this.ColLong.HeaderText = "Долгота";
-            this.ColLong.Name = "ColLong";
-            // 
-            // ColDepth
-            // 
-            this.ColDepth.HeaderText = "Глубина";
-            this.ColDepth.Name = "ColDepth";
-            // 
-            // ColMag
-            // 
-            this.ColMag.HeaderText = "Магнитуда";
-            this.ColMag.Name = "ColMag";
-            // 
-            // ColStations
-            // 
-            this.ColStations.HeaderText = "Станции";
-            this.ColStations.Name = "ColStations";
             // 
             // menuStrip1
             // 
@@ -126,6 +98,8 @@
             // 
             // saveFileToolStripMenuItem
             // 
+            this.saveFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.дозаписатьToolStripMenuItem});
             this.saveFileToolStripMenuItem.Name = "saveFileToolStripMenuItem";
             this.saveFileToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveFileToolStripMenuItem.Text = "Сохранить";
@@ -133,6 +107,8 @@
             // 
             // saveFileAsToolStripMenuItem
             // 
+            this.saveFileAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.дозаписатьToolStripMenuItem1});
             this.saveFileAsToolStripMenuItem.Name = "saveFileAsToolStripMenuItem";
             this.saveFileAsToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveFileAsToolStripMenuItem.Text = "Сохранить как";
@@ -150,6 +126,54 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.exitToolStripMenuItem.Text = "Выход";
+            // 
+            // дозаписатьToolStripMenuItem
+            // 
+            this.дозаписатьToolStripMenuItem.Name = "дозаписатьToolStripMenuItem";
+            this.дозаписатьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.дозаписатьToolStripMenuItem.Text = "Дозаписать";
+            // 
+            // дозаписатьToolStripMenuItem1
+            // 
+            this.дозаписатьToolStripMenuItem1.Name = "дозаписатьToolStripMenuItem1";
+            this.дозаписатьToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.дозаписатьToolStripMenuItem1.Text = "Дозаписать";
+            // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "№";
+            this.ColId.Name = "ColId";
+            this.ColId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColLat
+            // 
+            this.ColLat.HeaderText = "Широта";
+            this.ColLat.Name = "ColLat";
+            this.ColLat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColLong
+            // 
+            this.ColLong.HeaderText = "Долгота";
+            this.ColLong.Name = "ColLong";
+            this.ColLong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColDepth
+            // 
+            this.ColDepth.HeaderText = "Глубина";
+            this.ColDepth.Name = "ColDepth";
+            this.ColDepth.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColMag
+            // 
+            this.ColMag.HeaderText = "Магнитуда";
+            this.ColMag.Name = "ColMag";
+            this.ColMag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColStations
+            // 
+            this.ColStations.HeaderText = "Станции";
+            this.ColStations.Name = "ColStations";
+            this.ColStations.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 
@@ -179,6 +203,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveFileAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem дозаписатьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem дозаписатьToolStripMenuItem1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLat;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLong;

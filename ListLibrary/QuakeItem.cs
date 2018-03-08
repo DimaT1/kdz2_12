@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 
@@ -8,7 +9,7 @@ namespace ModelLibrary
     /// Класс, описывающий обобщённую характеристику землетрясения
     /// </summary>
     /// <typeparam name="T">int, double</typeparam>
-    public class QuakeItem<T> : IFormattable, IComparable, IValid, ICorrect where T : IFormattable, IComparable
+    public class QuakeItem<T> : IFormattable, IComparable, IValid, ICorrect, IEquatable<QuakeItem<T>> where T : IFormattable, IComparable
     {
         /// <summary>
         /// Численная характеристика землетрясения
@@ -269,6 +270,20 @@ namespace ModelLibrary
             QuakeItem<T> otherQuake = new QuakeItem<T>();
             otherQuake.SetFromStr(other.ToString(), CultureInfo.GetCultureInfo("en-US"), objName);
             return this.CompareTo(otherQuake);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as QuakeItem<T>);
+        }
+
+        public bool Equals(QuakeItem<T> other)
+        {
+            return other != null &&
+                   EqualityComparer<T>.Default.Equals(obj, other.obj) &&
+                   objName == other.objName &&
+                   Valid == other.Valid &&
+                   Correct == other.Correct;
         }
 
         /// <summary>
