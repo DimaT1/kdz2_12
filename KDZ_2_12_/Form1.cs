@@ -204,5 +204,20 @@ namespace KDZ_2_12_
 
             }
         }
+
+        private void informationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Информационно-справочная система \"Землетрясения\".\nВыполнил в рамках КДЗ по дисциплине \"Программирование\"\nстудент ФКН НИУ ВШЭ Торилов Дмитрий, группa БПИ173.", "Информация", MessageBoxButtons.OK);
+        }
+
+        private void valuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Величины корректны, если находятся в следующем диапазоне:\nШирота: -90 .. 90 (градусы)\nДолгота: -180 .. 180 (градусы)\nГлубина: 0 .. 1000 (км)\nМагнитуда: 1 .. 9,5\nСтанции: 0 и больше", "Информация", MessageBoxButtons.OK);
+        }
     }
 }
