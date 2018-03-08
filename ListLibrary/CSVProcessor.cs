@@ -78,7 +78,6 @@ namespace ModelLibrary
         {
             using (StreamWriter writer = new StreamWriter(filename, append: true))
             {
-                writer.WriteLine(normalHeader);
                 foreach (EarthQuake item in table)
                 {
                     writer.WriteLine(item.ToString(CultureInfo.GetCultureInfo("en-US")));

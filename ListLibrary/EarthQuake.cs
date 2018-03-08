@@ -187,7 +187,7 @@ namespace ModelLibrary
         /// <returns></returns>
         public override string ToString()
         {
-            return $"\"{id}\",{coordinates.Lat},{coordinates.Long},{depth},{mag},{stations}";
+            return $"{id},{coordinates.Lat},{coordinates.Long},{depth},{mag},{stations}";
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace ModelLibrary
         /// <returns>Строковое значение характеристики (NA при отрицательной валидности)</returns>
         public string ToString(string format, IFormatProvider formatProvider = null)
         {
-            return $"\"{id.ToString(format, formatProvider)},\"{coordinates.Lat.ToString(format, formatProvider)},{coordinates.Long.ToString(format, formatProvider)},{depth.ToString(format, formatProvider)},{mag.ToString(format, formatProvider)},{stations.ToString(format, formatProvider)}";
+            return $"{id.ToString(format, formatProvider)},{coordinates.Lat.ToString(format, formatProvider)},{coordinates.Long.ToString(format, formatProvider)},{depth.ToString(format, formatProvider)},{mag.ToString(format, formatProvider)},{stations.ToString(format, formatProvider)}";
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace ModelLibrary
         /// <returns>Строковое значение характеристики (NA при отрицательной валидности)</returns>
         public string ToString(CultureInfo cultureInfo = null)
         {
-            return $"\"{id.ToString(cultureInfo)},\"{coordinates.Lat.ToString(cultureInfo)},{coordinates.Long.ToString(cultureInfo)},{depth.ToString(cultureInfo)},{mag.ToString(cultureInfo)},{stations.ToString(cultureInfo)}";
+            return $"{id.ToString(cultureInfo)},{coordinates.Lat.ToString(cultureInfo)},{coordinates.Long.ToString(cultureInfo)},{depth.ToString(cultureInfo)},{mag.ToString(cultureInfo)},{stations.ToString(cultureInfo)}";
         }
     }
 }

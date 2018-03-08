@@ -174,8 +174,12 @@ namespace KDZ_2_12_
                 switch (dialogResult)
                 {
                     case DialogResult.Yes:
+                        dataGridView1.Rows.Clear();
+                        dataGridView1.Refresh();
+                        saveFileToolStripMenuItem_Click(sender, e);
                         break;
                     case DialogResult.No:
+                        Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
                         break;
                     case DialogResult.Cancel:
                         return;
@@ -209,7 +213,7 @@ namespace KDZ_2_12_
                 case DialogResult.Yes:
                     dataGridView1.Rows.Clear();
                     dataGridView1.Refresh();
-                    Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
+                    saveFileToolStripMenuItem_Click(sender, e);
                     break;
                 case DialogResult.No:
                     dataGridView1.Rows.Clear();
