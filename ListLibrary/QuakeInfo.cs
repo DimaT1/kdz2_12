@@ -185,5 +185,18 @@ namespace ModelLibrary
                 return quakes[rowIndex].GetList(cultureInfo);
             }
         }
+
+        public void SaveToFile(string filename, string mode)
+        {
+            switch (mode)
+            {
+                case "rewrite":
+                    CSVProcessor.WriteToCSV(quakes, filename);
+                    break;
+                case "append":
+                    CSVProcessor.AppendToCSV(quakes, filename);
+                    break;
+            }
+        }
     }
 }

@@ -165,73 +165,27 @@ namespace KDZ_2_12_
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки сохранения файла
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void saveFileAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-
-                }
-            }
-        }
-
-        /// <summary>
-        /// Обработчик нажатия кнопки сохранения файла
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Jarvis.FileOpened)
-            {
-
-            }
-            else
-            {
-                using (var saveFileDialog = new SaveFileDialog())
-                {
-                    saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
-
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Обработчик нажатия кнопки закрытия файла
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Jarvis.FileOpened)
+            DialogResult dialogResult = MessageBox.Show("Сохранить файл перед выходом?", "Сообщение", MessageBoxButtons.YesNoCancel);
+            switch (dialogResult)
             {
-                DialogResult dialogResult = MessageBox.Show("Сохранить файл перед выходом?", "Сообщение", MessageBoxButtons.YesNoCancel);
-                switch (dialogResult)
-                {
-                    case DialogResult.Yes:
-                        dataGridView1.Rows.Clear();
-                        dataGridView1.Refresh();
-                        Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
-                        break;
-                    case DialogResult.No:
-                        dataGridView1.Rows.Clear();
-                        dataGridView1.Refresh();
-                        Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
-                        break;
-                    case DialogResult.Cancel:
-                        return;
-                }
+                case DialogResult.Yes:
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Refresh();
+                    Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
+                    break;
+                case DialogResult.No:
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Refresh();
+                    Jarvis.viewCloseFileEvent.OnViewJarvisMessage();
+                    break;
+                case DialogResult.Cancel:
+                    return;
             }
         }
 
@@ -309,12 +263,12 @@ namespace KDZ_2_12_
 
         private void idToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Jarvis.viewModListEvent.OnViewJarvisMessage(new ModifyListClass(sortId: true));
         }
 
         private void stationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Jarvis.viewModListEvent.OnViewJarvisMessage(new ModifyListClass(sortSt: true));
         }
         
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -327,11 +281,119 @@ namespace KDZ_2_12_
             double val;
             if (double.TryParse(textBox7.Text, out val) && val >= 1 && val <= 9.5)
             {
-
+                if (MessageBox.Show($"При фильтрации будут утрачены элементы, если их параметр глубины меньше или равен {val}", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    Jarvis.viewModListEvent.OnViewJarvisMessage(new ModifyListClass(filt: true, mag: val));
+                }
             }
             else
             {
                 MessageBox.Show("Введите корректное значение магнитуды", "Сообщение", MessageBoxButtons.OK);
+            }
+        }
+
+        private void delToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((dataGridView1.RowCount < 1) || (dataGridView1.ColumnCount < 1))
+                {
+                    throw new ArgumentException("Нет строк для удаления!");
+                }
+                else
+                {
+                    if (dataGridView1.SelectedRows.Count > 0)
+                    {
+                        Jarvis.quakeInfo.Quakes.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Вы не выбрали строку для удаления!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Сообщение");
+            }
+        }
+
+        private void appendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Jarvis.FileOpened)
+            {
+                Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: true));
+            }
+            else
+            {
+                using (var saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: true, str: saveFileDialog.FileName));
+
+                    }
+                }
+            }
+        }
+
+        private void appendAsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: true, str: saveFileDialog.FileName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveFileAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: false, str: saveFileDialog.FileName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки сохранения файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Jarvis.FileOpened)
+            {
+                Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: false));
+            }
+            else
+            {
+                using (var saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Comma Separated Value(*.csv) | *.csv";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                        Jarvis.viewSaveFileEvent.OnViewJarvisMessage(new SaveFileArgs(append: false, str: saveFileDialog.FileName));
+                    }
+                }
             }
         }
     }

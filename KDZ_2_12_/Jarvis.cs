@@ -11,14 +11,37 @@ namespace KDZ_2_12_
 {
     public static class Jarvis
     {
-        private static QuakeInfo quakeInfo;
+        public static QuakeInfo quakeInfo;
         private static string currentFileName = null;
         public static bool FileOpened => currentFileName != null;
 
         public static ViewJarvisMessageEvent<string> viewOpenFileEvent = new ViewJarvisMessageEvent<string>();
-        public static ViewJarvisMessageEvent<string> viewSaveFileEvent = new ViewJarvisMessageEvent<string>();
+        public static ViewJarvisMessageEvent<SaveFileArgs> viewSaveFileEvent = new ViewJarvisMessageEvent<SaveFileArgs>();
         public static ViewJarvisNoMessageEvent viewCloseFileEvent = new ViewJarvisNoMessageEvent();
         public static ViewJarvisMessageEvent<CellEventArgs> viewCellChangedEvent = new ViewJarvisMessageEvent<CellEventArgs>();
+        public static ViewJarvisMessageEvent<ModifyListClass> viewModListEvent = new ViewJarvisMessageEvent<ModifyListClass>();
+
+        private static void OnViewModList(object sender, ViewJarvisMessageEventArgs<ModifyListClass> messageEventArgs)
+        {
+            ModifyListClass mod = messageEventArgs.Content;
+            if (mod.SortByID)
+            {
+                quakeInfo.Quakes = quakeInfo.SortedByID();
+            }
+            if (mod.SortByStations)
+            {
+                quakeInfo.Quakes = quakeInfo.SortedByStations();
+            }
+            if (mod.FilterByMag)
+            {
+                quakeInfo.Quakes = quakeInfo.MaxListByMag(mod.MagValue);
+            }
+
+            Form1.JarvisListMessageEvent.OnViewJarvisMessage(quakeInfo.GetList(CultureInfo.GetCultureInfo("ru-RU")));
+            Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
+            Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
+        }
+
         //public static ViewJarvisMessageEvent<List<string>> viewAddRow = new ViewJarvisMessageEvent<List<string>>();
         /*
         private static void OnAddRow(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
@@ -55,10 +78,22 @@ namespace KDZ_2_12_
             Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
         }
 
-        private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
+        private static void OnSaveFile(object sender, ViewJarvisMessageEventArgs<SaveFileArgs> messageEventArgs)
         {
-            string fileName = messageEventArgs.Content;
-            //quakeInfo.
+            SaveFileArgs args = messageEventArgs.Content;
+            if (args.FileName != null && args.Append == false)
+            {
+                currentFileName = args.FileName;
+            }
+            if (args.Append)
+            {
+                quakeInfo.SaveToFile(args.FileName, "append");
+            }
+            else
+            {
+                quakeInfo.SaveToFile(args.FileName, "rewrite");
+                Form1.JarvisSetTitleEvent.OnViewJarvisMessage(currentFileName);
+            }
         }
 
         private static void OnFileClosed()
@@ -91,6 +126,8 @@ namespace KDZ_2_12_
             quakeInfo = new QuakeInfo();
             Form1.JarvisMinDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MinDepthQuake);
             Form1.JarvisMaxDepthUpdatedEvent.OnViewJarvisMessage(quakeInfo.MaxDepthQuake);
+            viewModListEvent.ViewJarvisMessageEvnt += OnViewModList;
+            viewSaveFileEvent.ViewJarvisMessageEvnt += OnSaveFile;
         }
     }
 }

@@ -57,9 +57,26 @@ namespace ModelLibrary
         /// </summary>
         /// <param name="table">Список для сохранения</param>
         /// <param name="filename">Файл для сохранения</param>
-        static void WriteToCSV(List<EarthQuake> table, string filename)
+        public static void WriteToCSV(List<EarthQuake> table, string filename)
         {
             using (StreamWriter writer = new StreamWriter(filename))
+            {
+                writer.WriteLine(normalHeader);
+                foreach (EarthQuake item in table)
+                {
+                    writer.WriteLine(item.ToString(CultureInfo.GetCultureInfo("en-US")));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Метод сохраняет список table в файл filename
+        /// </summary>
+        /// <param name="table">Список для сохранения</param>
+        /// <param name="filename">Файл для сохранения</param>
+        public static void AppendToCSV(List<EarthQuake> table, string filename)
+        {
+            using (StreamWriter writer = new StreamWriter(filename, append: true))
             {
                 writer.WriteLine(normalHeader);
                 foreach (EarthQuake item in table)

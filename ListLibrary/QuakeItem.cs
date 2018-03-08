@@ -367,7 +367,7 @@ namespace ModelLibrary
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -385,7 +385,7 @@ namespace ModelLibrary
             }
             else
             {
-                return true;
+                return false;
             }
         }
     }

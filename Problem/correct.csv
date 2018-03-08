@@ -1,3 +1,10 @@
 "id","lat","long","depth","mag","stations"
 "1",1,161.62,11,4.8,41
 "2",-20.62,12.0,650,4.2,15
+"id","lat","long","depth","mag","stations"
+""13","NA,NA,NA,Error,NA
+""45","NA,12,NA,NA,NA
+"id","lat","long","depth","mag","stations"
+""4","NA,NA,NA,NA,NA
+""0","NA,NA,NA,NA,NA
+""-5","NA,NA,NA,NA,NA
