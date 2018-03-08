@@ -54,16 +54,32 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Событие вывода сообщения
+        /// </summary>
         public static ViewJarvisMessageEvent<string> JarvisSetTitleEvent = new ViewJarvisMessageEvent<string>();
 
+        /// <summary>
+        /// Обработчик события вывода сообщения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs"></param>
         private void OnJarvisSetTitleEvent(object sender, ViewJarvisMessageEventArgs<string> messageEventArgs)
         {
             string title = messageEventArgs.Content;
             Program.ThisForm.Text = $"Редактирование файла {title}";
         }
 
+        /// <summary>
+        /// Событие изменения строки
+        /// </summary>
         public static ViewJarvisMessageEvent<RowChangedArgs> JarvisRowChangedEvent = new ViewJarvisMessageEvent<RowChangedArgs>();
 
+        /// <summary>
+        /// Обработчик события изменения строки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs"></param>
         private void OnJarvisRowChangedEvent(object sender, ViewJarvisMessageEventArgs<RowChangedArgs> messageEventArgs)
         {
             RowChangedArgs args = messageEventArgs.Content;
@@ -76,8 +92,16 @@ namespace KDZ_2_12_
             dataGridView1.Refresh();
         }
 
+        /// <summary>
+        /// Событие обновления информации об элементе с самой большой характеристикой глубины
+        /// </summary>
         public static ViewJarvisMessageEvent<List<string>> JarvisMaxDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>();
 
+        /// <summary>
+        /// Обработчик обновления информации об элементе с самой большой характеристикой глубины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs"></param>
         private void OnJarvisMaxDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
         {
             List<string> args = messageEventArgs.Content;
@@ -89,8 +113,16 @@ namespace KDZ_2_12_
             label11.Text = args[5];
         }
 
+        /// <summary>
+        /// Событие обновления информации об элементе с минимальной характеристикой глубины
+        /// </summary>
         public static ViewJarvisMessageEvent<List<string>> JarvisMinDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>();
 
+        /// <summary>
+        /// Обработчик события обновления информации об элементе с минимальной характеристикой глубины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="messageEventArgs"></param>
         private void OnJarvisMinDepthUpdatedEvent(object sender, ViewJarvisMessageEventArgs<List<string>> messageEventArgs)
         {
             List<string> args = messageEventArgs.Content;
@@ -189,6 +221,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения ячейки таблицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -206,16 +243,31 @@ namespace KDZ_2_12_
 
         }
 
+        /// <summary>
+        /// Справка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Информационно-справочная система \"Землетрясения\".\nВыполнил в рамках КДЗ по дисциплине \"Программирование\"\nстудент ФКН НИУ ВШЭ Торилов Дмитрий, группa БПИ173.", "Информация", MessageBoxButtons.OK);
         }
 
+        /// <summary>
+        /// Предельные величины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void valuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Величины корректны, если находятся в следующем диапазоне:\nШирота: -90 .. 90 (градусы)\nДолгота: -180 .. 180 (градусы)\nГлубина: 0 .. 1000 (км)\nМагнитуда: 1 .. 9,5\nСтанции: 0 и больше", "Информация", MessageBoxButtons.OK);
         }
 
+        /// <summary>
+        /// Кнопка выхода - обработчик
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Вы действительно хотите выйти?", "Землетрясения ИСС",
@@ -225,6 +277,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки добавления строки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add("NA", "NA", "NA", "NA", "NA", "NA");
@@ -252,6 +309,11 @@ namespace KDZ_2_12_
             Jarvis.viewCellChangedEvent.Plugged = true;
         }
 
+        /// <summary>
+        /// Обработчик закрытия формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("Вы действительно хотите выйти?", "Землетрясения ИСС",
@@ -261,11 +323,21 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик вызова сортировки по ID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void idToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Jarvis.viewModListEvent.OnViewJarvisMessage(new ModifyListClass(sortId: true));
         }
 
+        /// <summary>
+        /// Обработчик вызова сортировки по станциям
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void stationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Jarvis.viewModListEvent.OnViewJarvisMessage(new ModifyListClass(sortSt: true));
@@ -276,6 +348,11 @@ namespace KDZ_2_12_
             
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки фильтрации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             double val;
@@ -292,6 +369,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки удаления строки в таблице
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void delToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -321,6 +403,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки дозаписи в файл
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void appendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Jarvis.FileOpened)
@@ -342,6 +429,11 @@ namespace KDZ_2_12_
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки дозаписи в файл
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void appendAsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             using (var saveFileDialog = new SaveFileDialog())

@@ -102,6 +102,12 @@ namespace ModelLibrary
             stations = new QuakeItem<int>();
         }
 
+        /// <summary>
+        /// Установка элемента из строки 
+        /// </summary>
+        /// <param name="val">Значение</param>
+        /// <param name="index">Ползиция в таблице</param>
+        /// <param name="cultureInfo">Локаль языка</param>
         public void SetElemFromStr(string val, int index, CultureInfo cultureInfo)
         {
             switch (index)
@@ -127,6 +133,12 @@ namespace ModelLibrary
             }
         }
 
+        /// <summary>
+        /// Получение элемента с позиции index
+        /// </summary>
+        /// <param name="index">Позиция</param>
+        /// <param name="cultureInfo">Локаль языка</param>
+        /// <returns>Элемент</returns>
         public string GetElemStr(int index, CultureInfo cultureInfo)
         {
             switch (index)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
+    /// <summary>
+    /// Структура параметров изменения строки
+    /// </summary>
     public struct RowChangedArgs
     {
         public List<string> Row { get; set; }

@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
+    /// <summary>
+    /// Параметр обобщённого события
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ViewJarvisMessageEventArgs<T> : EventArgs
     {
         public T Content;
     }
 
+    /// <summary>
+    /// Обобщённое событие с параметром
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ViewJarvisMessageEvent<T>
     {
         private bool plugged = true;

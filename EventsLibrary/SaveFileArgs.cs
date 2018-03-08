@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
+    /// <summary>
+    /// Структура агументов, передаваемых при сохранении файла
+    /// </summary>
     public struct SaveFileArgs
     {
         public bool Append { get; set; }

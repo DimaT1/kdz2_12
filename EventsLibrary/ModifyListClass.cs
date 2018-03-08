@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
+    /// <summary>
+    /// Структура параметров изменения списка
+    /// </summary>
     public struct ModifyListClass
     {
         public bool SortByID { get; set; }

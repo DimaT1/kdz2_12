@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
+    /// <summary>
+    /// Структура параметров, передаваемых при изменении ячейки таблицы
+    /// </summary>
     public struct CellEventArgs
     {
         public int ColumnIndex { get; set; }

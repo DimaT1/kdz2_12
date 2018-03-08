@@ -117,7 +117,13 @@ namespace ModelLibrary
             return res;
         }
 
+        /// <summary>
+        /// Информация о землетрясении на минимальной глубине
+        /// </summary>
         public List<string> MinDepthQuake => getMinDepthQuake().GetList();
+        /// <summary>
+        /// Информация о землетрясении на максимальной глубине
+        /// </summary>
         public List<string> MaxDepthQuake => getMaxDepthQuake().GetList();
 
         /// <summary>
@@ -160,6 +166,11 @@ namespace ModelLibrary
             return maxDepthQuake;
         }
 
+        /// <summary>
+        /// Получить представление в виде списка списков строк
+        /// </summary>
+        /// <param name="cultureInfo">Локаль языка</param>
+        /// <returns>Список</returns>
         public List<List<string>> GetList(CultureInfo cultureInfo=null)
         {
             List<List<string>> res = new List<List<string>>(); 
@@ -170,6 +181,14 @@ namespace ModelLibrary
             return res;
         }
 
+        /// <summary>
+        /// Установка нового значения ячейки и возвращение нового списка строк строки таблицы
+        /// </summary>
+        /// <param name="val">Новое значение</param>
+        /// <param name="columnIndex">Индекс столбца</param>
+        /// <param name="rowIndex">Индекс строки</param>
+        /// <param name="cultureInfo">Локаль языка</param>
+        /// <returns></returns>
         public List<string> NewCell(string val, int columnIndex, int rowIndex, CultureInfo cultureInfo)
         {
             if (rowIndex >= quakes.Count)
@@ -186,6 +205,11 @@ namespace ModelLibrary
             }
         }
 
+        /// <summary>
+        /// Запись в файл
+        /// </summary>
+        /// <param name="filename">Имя файла</param>
+        /// <param name="mode">Запись/Дозапсиь</param>
         public void SaveToFile(string filename, string mode)
         {
             switch (mode)
