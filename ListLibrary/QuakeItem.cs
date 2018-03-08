@@ -351,5 +351,42 @@ namespace ModelLibrary
         {
             return q1.CompareTo(q2) != 0;
         }
+
+
+        /// <summary>
+        /// Перегрузка оператора <
+        /// </summary>
+        /// <param name="q1">Первый операнд</param>
+        /// <param name="q2">Второй операнд</param>
+        /// <returns>Результат операции сравнения</returns>
+        public static bool operator <(QuakeItem<T> q1, double q2)
+        {
+            if (q1.Valid && q1.Correct)
+            {
+                return q1.obj.CompareTo(q2) < 0;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Перегрузка оператора >
+        /// </summary>
+        /// <param name="q1">Первый операнд</param>
+        /// <param name="q2">Второй операнд</param>
+        /// <returns>Результат операции сравнения</returns>
+        public static bool operator >(QuakeItem<T> q1, double q2)
+        {
+            if (q1.Valid && q1.Correct)
+            {
+                return q1.obj.CompareTo(q2) > 0;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

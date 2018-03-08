@@ -306,5 +306,33 @@ namespace KDZ_2_12_
                 e.Cancel = true;
             }
         }
+
+        private void idToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            double val;
+            if (double.TryParse(textBox7.Text, out val) && val >= 1 && val <= 9.5)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Введите корректное значение магнитуды", "Сообщение", MessageBoxButtons.OK);
+            }
+        }
     }
 }

@@ -93,12 +93,20 @@
             this.label25 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.idToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -241,8 +249,11 @@
             // 
             // sortToolStripMenuItem
             // 
+            this.sortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.idToolStripMenuItem,
+            this.stationsToolStripMenuItem});
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
-            this.sortToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sortToolStripMenuItem.Text = "Сортировка";
             // 
             // informationToolStripMenuItem
@@ -740,11 +751,79 @@
             this.textBox1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBox1, "ID землетрясения");
             // 
+            // idToolStripMenuItem
+            // 
+            this.idToolStripMenuItem.Name = "idToolStripMenuItem";
+            this.idToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.idToolStripMenuItem.Text = "По номеру";
+            this.idToolStripMenuItem.Click += new System.EventHandler(this.idToolStripMenuItem_Click);
+            // 
+            // stationsToolStripMenuItem
+            // 
+            this.stationsToolStripMenuItem.Name = "stationsToolStripMenuItem";
+            this.stationsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stationsToolStripMenuItem.Text = "По станциям";
+            this.stationsToolStripMenuItem.Click += new System.EventHandler(this.stationsToolStripMenuItem_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Controls.Add(this.textBox7);
+            this.groupBox5.Controls.Add(this.label32);
+            this.groupBox5.Controls.Add(this.label31);
+            this.groupBox5.Location = new System.Drawing.Point(640, 326);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(132, 156);
+            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Фильтрация по магнитуде";
+            this.toolTip1.SetToolTip(this.groupBox5, "Настройки фильтрации");
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(3, 30);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(129, 13);
+            this.label31.TabIndex = 1;
+            this.label31.Text = "Работать с элементами";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 43);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(107, 13);
+            this.label32.TabIndex = 2;
+            this.label32.Text = "магнитудой больше";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(12, 59);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.textBox7, "Магнитура");
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 85);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 65);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Фильтровать";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
@@ -764,6 +843,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -835,6 +916,13 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem idToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stationsToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Button button3;
     }
 }
 

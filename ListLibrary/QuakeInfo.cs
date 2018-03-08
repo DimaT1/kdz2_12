@@ -74,6 +74,17 @@ namespace ModelLibrary
         }
 
         /// <summary>
+        /// Возвращает отсортированный по id список землетрясений
+        /// </summary>
+        /// <returns>Отсортированный по количеству станций список землетрясений</returns>
+        public List<EarthQuake> SortedByID()
+        {
+            List<EarthQuake> res = quakes;
+            res.Sort((q1, q2) => q1.Id.CompareTo(q2.Id));
+            return res;
+        }
+
+        /// <summary>
         /// Возвращает отсортированный по количеству станций список землетрясений
         /// </summary>
         /// <returns>Отсортированный по количеству станций список землетрясений</returns>
@@ -92,10 +103,17 @@ namespace ModelLibrary
         /// <param name="minValue">Минимальное значение по шкале Рихтера</param>
         /// <param name="itemCount">Максимальное количество элементов в списке</param>
         /// <returns>Отсортированный по магнитуре список максимальных землетрясений</returns>
-        public List<EarthQuake> MaxListByMag(double maxShift, double minValue, long itemCount)
+        public List<EarthQuake> MaxListByMag(double minValue)
         {
-            List<EarthQuake> res = quakes;
-            res.Sort((q1, q2) => q1.Mag.CompareTo(q2.Mag));
+            List<EarthQuake> res = new List<EarthQuake>();
+            
+            foreach (EarthQuake quake in quakes)
+            {
+                if (quake.Mag > minValue)
+                {
+                    res.Add(quake);
+                }
+            }
             return res;
         }
 
