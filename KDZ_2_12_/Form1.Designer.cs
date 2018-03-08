@@ -44,7 +44,6 @@
             this.saveFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appendAsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -184,8 +183,7 @@
             this.openFileToolStripMenuItem,
             this.saveFileToolStripMenuItem,
             this.saveFileAsToolStripMenuItem,
-            this.closeFileToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.closeFileToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.fileToolStripMenuItem.Text = "Файл";
@@ -225,7 +223,7 @@
             // appendAsToolStripMenuItem1
             // 
             this.appendAsToolStripMenuItem1.Name = "appendAsToolStripMenuItem1";
-            this.appendAsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.appendAsToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
             this.appendAsToolStripMenuItem1.Text = "Дозаписать";
             this.appendAsToolStripMenuItem1.Click += new System.EventHandler(this.appendAsToolStripMenuItem1_Click);
             // 
@@ -235,12 +233,6 @@
             this.closeFileToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.closeFileToolStripMenuItem.Text = "Закрыть";
             this.closeFileToolStripMenuItem.Click += new System.EventHandler(this.closeFileToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.exitToolStripMenuItem.Text = "Выход";
             // 
             // tableToolStripMenuItem
             // 
@@ -870,7 +862,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveFileAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem appendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem appendAsToolStripMenuItem1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;

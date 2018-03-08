@@ -40,13 +40,9 @@
   <Struct Name="ModelLibrary.Coordinates">
     <Position X="0.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAACgAAAAEIAAAACAAAAAAAAAAAAAABAAIAAA=</HashCode>
+      <HashCode>AAAAAAEAACAAAAAEIAAAAAAAAAAAAAAAAAAABAAIAAA=</HashCode>
       <FileName>Coordinates.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="QuakeItem" />
-      <Property Name="EarthQuake" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Struct>
   <Interface Name="ModelLibrary.IValid">

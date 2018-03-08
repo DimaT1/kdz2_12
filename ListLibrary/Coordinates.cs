@@ -90,21 +90,5 @@ namespace ModelLibrary
         /// Реализация интерфейса ICorrect
         /// </summary>
         public bool Correct => _lat.Correct && _long.Correct;
-
-        public QuakeItem<object> QuakeItem
-        {
-            get => default(QuakeItem<object>);
-            set
-            {
-            }
-        }
-
-        public EarthQuake EarthQuake
-        {
-            get => default(EarthQuake);
-            set
-            {
-            }
-        }
     }
 }

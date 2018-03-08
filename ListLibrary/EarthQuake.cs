@@ -212,13 +212,5 @@ namespace ModelLibrary
         {
             return $"\"{id.ToString(cultureInfo)},\"{coordinates.Lat.ToString(cultureInfo)},{coordinates.Long.ToString(cultureInfo)},{depth.ToString(cultureInfo)},{mag.ToString(cultureInfo)},{stations.ToString(cultureInfo)}";
         }
-
-        public QuakeItem<object> QuakeItem
-        {
-            get => default(QuakeItem<object>);
-            set
-            {
-            }
-        }
     }
 }
