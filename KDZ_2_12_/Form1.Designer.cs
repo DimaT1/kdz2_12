@@ -660,7 +660,7 @@
             this.button2.Size = new System.Drawing.Size(105, 39);
             this.button2.TabIndex = 7;
             this.button2.Text = "Добавить";
-            this.toolTip1.SetToolTip(this.button2, "Добавление элемента в список");
+            this.toolTip1.SetToolTip(this.button2, "Пошагово добавить в список");
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
