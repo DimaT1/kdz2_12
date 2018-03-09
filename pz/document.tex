@@ -16,6 +16,7 @@
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
 
+
 %%% Дополнительная работа с математикой
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
 \usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
@@ -117,7 +118,7 @@
 
 \usepackage{hyperref}
 \usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
-\definecolor{my-color}{HTML}{226634}
+\definecolor{my-color}{HTML}{000000}
 \hypersetup{				% Гиперссылки
 	unicode=true,           % русские буквы в раздела PDF
 	pdftitle={Пояснительная записка},   % Заголовок
@@ -128,9 +129,9 @@
 	pdfkeywords={keyword1} {key2} {key3}, % Ключевые слова
 	colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
 	linkcolor=black,          % внутренние ссылки
-	citecolor=my-color,        % на библиографию
+	citecolor=black,        % на библиографию
 	filecolor=magenta,      % на файлы
-	urlcolor=cyan           % на URL
+	urlcolor=black           % на URL
 }
 
 %\renewcommand{\familydefault}{\sfdefault} % Начертание шрифта
@@ -338,7 +339,7 @@
 Появляются при наведении курсора мыши на необходимый элемент. Несут дополнительную информацию об объекте.
 
 \section{Структура приложения}
-Приложение реализовано с использованием паттерна Model-View-Controller. Model реализована объектом класса QuakeInfo. View реализована объектом Form1. Задачу Controller выполняет статический класс Jarvis. Ниже приведены необходимые для понимания детали структуры приложения.
+Приложение реализовано с использованием паттерна Model-View-Controller\cite{MVC}. Model реализована объектом класса QuakeInfo. View реализована объектом Form1. Задачу Controller выполняет статический класс Jarvis. Ниже приведены необходимые для понимания детали структуры приложения.
 \subsection{Диаграмма классов}
 \newpage
 \includegraphics[width=1\linewidth]{ClassDiagram4.png}
@@ -447,18 +448,10 @@
 %\lstinputlisting{CSVProcessor.cs}
 
 \newpage
+
 \section{Список литературы}
 
-1. Охота на мифический MVC. Построение пользовательского интерфейса - cobiot
-27 февраля 2017 - https://habrahabr.ru/post/322700/\\
-2. Changing the form title text programmatically - February 04, 2008\\ - https://social.msdn.microsoft.com/Forums/en-US/b958c565-94bb-464d-9075-5163384d3887\\/changing-the-form-title-text-programmatically?forum=winforms\\
-3. Географические координаты - Википедия - https://ru.wikipedia.org/wiki/\\Географические\_координаты\\
-4. Землетрясение - Википедия - https://ru.wikipedia.org/wiki/Землетрясение\\
-5. Магнитуда землетрясения - Википедия - https://ru.wikipedia.org/wiki/\\Магнитуда\_землетрясения\\
-6. Обобщенные классы - https://professorweb.ru -\\ https://professorweb.ru/my/csharp/charp\_theory/level11/11\_2.php\\
-7.openFileDialog, saveFileDialog - stackoverflow.com - \\ https://ru.stackoverflow.com/questions/87480/openfiledialog-savefiledialog\\
-8. C# 6.0. Справочник. Полное описание языка - Джозеф Албахари, Бен Албахари - O’Reilly - C# 6.0 in a Nutshell: The Definitive Reference - Joseph Albahari, Ben Albahari
-
-
+\bibliographystyle{plain}
+\bibliography{bibfile}
 
 \end{document}
