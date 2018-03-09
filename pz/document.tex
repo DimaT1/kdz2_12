@@ -275,6 +275,7 @@
 Далее следует описание задания варианта \textnumero 12:\\[1em]
 Для представления данных о землетрясении использовать класс EarthQuake. Координаты землетрясения представлять объектом структуры. Класс QuakeInfo связан с объектами EarthQuake отношением агрегации и позволяет получать списки землетрясений, сгруппированные по количеству уловивших их станций; списки землетрясений с максимальной магнитурой; землетрясение произошедшее на минимальной и максимальной глубине. Модифицировать интерфейс так, чтобы указанные данные можно было отобразить.\\
 
+
 \section{Функции разрабатываемого приложения}
 
 \subsection{Варианты использования}
@@ -347,8 +348,8 @@
 
 \subsubsection{Jarvis}
 Выполняет задачу синхронизации Model и View.\\
-Объект класса QuakeInfo связан со статическим классом Jarvis отношением агрегации. Планируется сделать их менее зависимыми с возможностью обмена данными через события.\\
-С объектом Form1 реализовано гибкое общение через события.\\[2em]
+Объект класса QuakeInfo связан со статическим классом Jarvis отношением агрегации.\\
+С объектом Form1 реализовано гибкое общение через события\cite{Ev} с обобщениями\cite{Gen}\cite{Ev2}.\\[2em]
 \textbf{Поля}:
 \begin{itemize}
 	\item public static QuakeInfo quakeInfo - Модель агрегирована в контроллер
@@ -381,7 +382,7 @@
 	\item public static ViewJarvisMessageEvent<ModifyListClass> viewModListEvent = new\\ ViewJarvisMessageEvent<ModifyListClass>(); - Событие обработчика модификации списка
 \end{itemize}
 \subsubsection{Form}
-Представляет реализацию View. Обменивается данными с Jarvis через события
+Представляет реализацию View\cite{Tit}\cite{DataGridView}. Обменивается данными с Jarvis через события. 
 
 \textbf{Методы}:
 \begin{itemize}
@@ -420,6 +421,37 @@
 	\item public static ViewJarvisMessageEvent<List<string>> JarvisMinDepthUpdatedEvent = new ViewJarvisMessageEvent<List<string>>(); - Событие обновления информации об элементе с минимальной характеристикой глубины
 \end{itemize}
 
+\subsection{QuakeInfo}
+Описывает модель. Агрегирована в контроллер.\\
+Выполняет файловый ввод-вывод\cite{StreamReader}\cite{FileDialog}, проверяет корректность введённых координат\cite{Coord},\\ глубин\cite{EartQ}, магнитуд\cite{Mag}.
+
+\textbf{Поля}
+\begin{itemize}
+	\item private List<EarthQuake> quakes = new List<EarthQuake>(); - Список землетрясений
+\end{itemize}
+
+\textbf{Свойства}
+\begin{itemize}
+	\item public List<EarthQuake> Quakes - Свойство списка землетрясений
+	\item public bool Valid - Реализация интерфейса IValid
+	\item public bool Correct - Реализация интерфейса ICorrect
+	\item public List<string> MinDepthQuake => getMinDepthQuake().GetList(); - Информация о землетрясении на минимальной глубине. При добавлении элемента происходит полная проверка всего списка. Требует уменьшения сложности алгоритма. Реализована за линейную сложность из-за сжатых сроков сдачи КДЗ.
+	\item public List<string> MaxDepthQuake => getMaxDepthQuake().GetList(); - Информация о землетрясении на максимальной глубине. При добавлении элемента происходит полная проверка всего списка. Требует уменьшения сложности алгоритма. Реализована за линейную сложность из-за сжатых сроков сдачи КДЗ.
+\end{itemize}
+
+\textbf{Методы}
+\begin{itemize}
+	\item public QuakeInfo() - Конструктор объекта
+	\item public QuakeInfo(string filename) - Конструктор объекта с чтением списка из файла
+	\item public List<EarthQuake> SortedByID() - Возвращает отсортированный по id список землетрясений
+	\item public List<EarthQuake> SortedByStations() - Возвращает отсортированный по количеству станций список землетрясений
+	\item public List<EarthQuake> MaxListByMag(double minValue) - Возвращает отсортированный по магнитуре список максимальных землетрясений
+	\item private EarthQuake getMinDepthQuake() - Поиск землетрясения, произошеднего на минимальной глубине.
+	\item private EarthQuake getMaxDepthQuake() - Поиск землетрясения, произошеднего на максимальной глубине.
+	\item public List<List<string>> GetList(CultureInfo cultureInfo=null) - Получить представление в виде списка списков строк
+	\item public List<string> NewCell(string val, int columnIndex, int rowIndex, CultureInfo\\ cultureInfo) - Установка нового значения ячейки и возвращение нового списка строк строки таблицы
+	\item public void SaveToFile(string filename, string mode) - Запись и дозапись списка в файл 
+\end{itemize}
 
 \section{Распределение исходного кода по файлам проекта}
 Описание модели содержится в файле QuakeInfo.cs. Все файлы из библиотеки классов ModelLibrary являются вспомогательными.\\

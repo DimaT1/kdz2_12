@@ -1,9 +1,66 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{FileDialog}
+Andrew.
+\newblock openfiledialog, savefiledialog.
+\newblock
+  \url{https://ru.stackoverflow.com/questions/87480/openfiledialog-savefiledialog}.
 
 \bibitem{MVC}
 cobiot.
 \newblock Охота на мифический mvc. Построение
   пользовательского интерфейса.
 \newblock \url{https://habrahabr.ru/post/322700/}.
+
+\bibitem{DataGridView}
+Microsoft.
+\newblock Класс datagridview.
+\newblock
+  \url{https://msdn.microsoft.com/ru-ru/library/system.windows.forms.datagridview(v=vs.110).aspx}.
+
+\bibitem{StreamReader}
+Microsoft.
+\newblock Метод streamreader.read ().
+\newblock
+  \url{https://msdn.microsoft.com/ru-ru/library/ath1fht8(v=vs.110).aspx}.
+
+\bibitem{Gen}
+professorweb.ru.
+\newblock Обобщенные классы.
+\newblock
+  \url{https://professorweb.ru/my/csharp/charp\_theory/level11/11\_2.php}.
+
+\bibitem{Ev2}
+professorweb.ru.
+\newblock Обработка событий в среде .net framework.
+\newblock
+  \url{https://professorweb.ru/my/csharp/charp\_theory/level10/10\_9.php}.
+
+\bibitem{Ev}
+professorweb.ru.
+\newblock События.
+\newblock
+  \url{https://professorweb.ru/my/csharp/charp\_theory/level10/10\_7.php}.
+
+\bibitem{Tit}
+theLotus.
+\newblock Changing the form title text programmatically.
+\newblock
+  \url{https://social.msdn.microsoft.com/Forums/en-US/b958c565-94bb-464d-9075-5163384d3887/changing-the-form-title-text-programmatically?forum=winforms}.
+
+\bibitem{EartQ}
+Wikipedia.
+\newblock Earthquake.
+\newblock \url{https://en.wikipedia.org/wiki/Earthquake}.
+
+\bibitem{Coord}
+Wikipedia.
+\newblock Geographic coordinate system.
+\newblock \url{https://en.wikipedia.org/wiki/Geographic\_coordinate\_system}.
+
+\bibitem{Mag}
+Wikipedia.
+\newblock Moment magnitude scale.
+\newblock \url{https://en.wikipedia.org/wiki/Moment\_magnitude\_scale}.
 
 \end{thebibliography}
